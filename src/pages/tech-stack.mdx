@@ -1,0 +1,97 @@
+---
+layout: ../layouts/DocLayout.astro
+title: "Technical Stack & Implementation"
+description: "The 'Snoopiest' Engine: A Hybrid Monorepo Architecture"
+hero: true
+---
+
+## The "Snoopiest" Engine
+
+The **Context-Snoopiest** application is architected as a **Hybrid Monorepo**, ensuring seamless state management between the web interface and the heavy processing agents. This "Best-in-Class" modular approach prevents vendor lock-in and ensures each component differs to the specialized tool best suited for the task.
+
+### 1. Core Application Stack
+
+| Component | Technology | Rationale |
+| :--- | :--- | :--- |
+| **Frontend / UI** | **Next.js 14 (App Router)** | Server Actions allow us to trigger complex Python scripts directly from the UI without a separate API layer for simple tasks. |
+| **Styling** | **Tailwind CSS + ShadcnUI** | Provides the "Studio" dashboard feel with rapid development capabilities. |
+| **Orchestration** | **Node.js (BullMQ + Redis)** | The "Showrunner." Manages persistent job queues. Since video generation takes minutes, we cannot use simple HTTP requests. |
+| **AI Logic Backend** | **Python (FastAPI)** | The "Workers." Python is non-negotiable for PyTorch, Diffusers, and LangChain integrations. |
+| **Communication** | **Redis Pub/Sub** | The Node.js orchestrator talks to Python workers via Redis. |
+| **Database** | **Supabase (PostgreSQL)** | Stores the "World State," Character definitions (JSONB), and job history. |
+| **Vector Store** | **pgvector** | Integrated inside Supabase for RAG context retrieval. |
+
+---
+
+### 2. The AI Model Zoo
+
+We utilize a Best-in-Class Modular Approach rather than a single provider. This prevents vendor lock-in and allows upgrading specific components (e.g., swapping the Image Generator without breaking the Text Analyzer).
+
+| Component | Model Selected | Provider | Rationale |
+| :--- | :--- | :--- | :--- |
+| **Logic / Text** | **Claude 3.5 Sonnet** | Anthropic API | Superior reasoning capabilities and larger context window (200k) for analyzing full chapters. |
+| **Image Gen** | **Flux.1 [Dev]** | Replicate / Fal.ai | Currently beats Midjourney in prompt adherence and text rendering. Essential for consistent character faces. |
+| **Video Gen** | **Luma Dream Machine** | Luma API | High temporal coherence. We rely on Luma's "Keyframe" feature (Start + End Image) to control 8-second clips. |
+| **Audio / TTS** | **ElevenLabs (Turbo v2)** | ElevenLabs API | Low latency and highest emotional range. Supports "Speech-to-Speech" for directing tone. |
+| **Lip Sync** | **SyncLabs / SadTalker** | API / Local | Decoupled lip-syncing ensures we can perfect the audio performance before mapping it to the video. |
+
+---
+
+### 3. Advanced Document Management
+
+We treat the screenplay not just as text, but as **executable documentation**.
+
+#### The Quarto (QMD) Pipeline
+
+1.  **Source**: `Chapter_01.md` (Raw Text).
+2.  **Processing**: The Agent converts this into `Script_01.qmd` (Quarto Markdown).
+3.  **Metadata Injection**: The Agent embeds JSON metadata (Camera angles, Lighting) inside YAML headers or hidden code blocks within the QMD.
+4.  **Render**:
+    *   **For Humans**: Quarto renders a clean PDF looking like a Hollywood script (Courier font, proper indentation).
+    *   **For Robots**: The system parses the underlying JSON data blocks from the same file to drive the video generator.
+
+> [!TIP]
+> **Single Source of Truth**: The readable PDF script reviewed by humans is the exact same code that generates the video.
+
+---
+
+### 4. Audio & Lip Sync Architecture
+
+Professional production requires **Decoupling**. We generally avoid "all-in-one" generators to maintain granular control over performance.
+
+*   **Step 1: Audio Production (The Radio Play)**
+    *   Generate full audio track using ElevenLabs.
+    *   **Forced Alignment**: Use tools like Gentle or OpenAI Whisper to get exact timing of every word.
+*   **Step 2: Video Generation (The Silent Film)**
+    *   Generate the 8-second video visuals based on the visual prompt.
+*   **Step 3: The Sync Pass (Post-Process)**
+    *   **Lip-Sync**: Run Video + Audio through a dedicated Sync engine (Wav2Lip/SyncLabs).
+
+---
+
+### 5. Asset Management: "The Cloud-Local Mirror"
+
+Team collaboration on 50GB+ video projects is challenging. We solve this with a "Split-Brain" storage strategy.
+
+#### Storage Strategy
+
+*   **Code & Scripts**: `GitHub` (.md, .qmd, .json) - Version controlled, lightweight.
+*   **Heavy Assets**: `AWS S3 / Cloudflare R2` (.mp4, .png, .wav) - Cheap object storage.
+
+#### The Sync Mechanism (`npm run asset:sync`)
+
+1.  Cloud Worker renders video -> Uploads to S3 -> Pushes Manifest to Database.
+2.  Local CLI detects new manifest.
+3.  **Node.js `fs`** generates folder structure locally matching the Chapter/Scene hierarchy.
+4.  Pulls only the new video files to your local folder.
+
+---
+
+### 6. Execution Environment
+
+| Task | Environment | Why? |
+| :--- | :--- | :--- |
+| **Writing / Logic** | **Cloud (Anthropic)** | Requires massive GPU/TPU for LLM reasoning. |
+| **Folder Gen / Management** | **Local (Node.js)** | Fast file system operations; zero latency UI updates. |
+| **Image/Video Rendering** | **Cloud (Replicate)** | Requires A100 GPUs. Too slow/hot to run on local MacBook. |
+| **Final Assembly** | **Hybrid** | FFmpeg WASM for quick previews; Cloud Lambda for 4K export. |

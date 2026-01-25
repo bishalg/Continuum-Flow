@@ -1,68 +1,54 @@
----
-title: Introduction
-description: Docs intro
-layout: ../../layouts/MainLayout.astro
----
+# Context-Snoopiest
 
-# Astro Design System Theme
+**AI-Driven Narrative to Video Architecture**
 
-Astro Design System is the easiest way to start your our design system. Since Astro is compatible with many frameworks, you can import your components and document them right in the markdown files.
+![Build Status](https://github.com/bishalg/Context-Snoopiest/actions/workflows/deploy.yml/badge.svg)
+[![Documentation](https://img.shields.io/badge/docs-Context--Snoopiest-blue)](https://bishalg.github.io/Context-Snoopiest/)
 
-## Getting started
+Context-Snoopiest is an advanced architecture designed to maintain context and character consistency in AI-generated video narratives. By leveraging intelligent chunking strategies, context management engines, and agentic workflows, it solves the "amnesia" problem often found in long-form generative video content.
 
-### Adding new sections
+## 📚 Documentation
 
-Although it's not required, you can create folders for new sections.
+The full documentation is available at: **[https://bishalg.github.io/Context-Snoopiest/](https://bishalg.github.io/Context-Snoopiest/)**
 
-To show the section on the left side navigation, add it to the navigation config file at `src/config.ts`.
+## 🏗️ Architecture Overview
 
-Example:
+The system is broken down into several core components documented in detail:
 
-```js
-export const SIDEBAR = [
-    { text: "Core", header: true },
-    { text: "Introduction", link: "/core/introduction" },
-    ...,
-    { text: "Components", header: true },
-    { text: "Buttons", link: "/components/buttons" },
-    ...,
-    { text: "New section", header: true },
-    { text: "New component", link: "/new-section/new-component.md" },
-];
-```
+### Core Engine
+- **[Chunking Strategy](https://bishalg.github.io/Context-Snoopiest/chunking)**: How narratives are broken down into manageable, consistency-preserving segments.
+- **[Context Engine](https://bishalg.github.io/Context-Snoopiest/context-management)**: The brain of the system that manages state, memory, and narrative flow across chunks.
+- **[Character Consistency](https://bishalg.github.io/Context-Snoopiest/character-consistency)**: Techniques and pipelines ensuring visual and behavioral fidelity of characters throughout the video.
 
-### Adding new pages
+### Implementation
+- **[Workflows](https://bishalg.github.io/Context-Snoopiest/workflows)**: detailed workflows for the generation pipeline.
+- **[Agentic Workflow](https://bishalg.github.io/Context-Snoopiest/agentic-workflow)**: How AI agents collaborate to execute the generation tasks.
+- **[Roadmap](https://bishalg.github.io/Context-Snoopiest/roadmap)**: Future development plans and features.
 
-To add new pages just create an .astro or markdown file in `src/pages/[section]/my-page.md`. Remember to add it to the navigation config in `src/config.ts` so it shows up in the left side navigation.
+### Technology
+- **[Tech Stack](https://bishalg.github.io/Context-Snoopiest/tech-stack)**: frameworks, libraries, and tools used.
 
-You're free to organize the pages however you want.
+## 🚀 Deployment
 
-### Customizing Core section (colors, typography, shadows...)
+This project uses [Astro](https://astro.build) for documentation and is deployed via GitHub Actions.
 
-If you want to customize the default colors, typography or shadows you can find the configuration file at `src/config/design.config.ts`.
+### Local Development
 
-Feel free to add new pages to the Core section
+1.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-### Customizing the page layout
+2.  **Start Dev Server**
+    ```bash
+    npm run dev
+    ```
 
-You can find the css for the pages in `src/styles/content.scss`.
+3.  **Build**
+    ```bash
+    npm run build
+    ```
 
-### Adding your components
+## 📄 License
 
-Astro is great for design systems because it allows you to import components from different frameworks like react, vue or svelte.
-
-To get started check how the `MainButton` component is used in the `src/pages/en/buttons.md` file.
-
-You can import your component library or create your own and document it easily.
-
-### `.component-preview` utility
-
-There's a class called `.component-preview` that you can use to wrap your component in a grid, and it will look like this:
-
-<div class="component-preview">
-    <button class="text-white bg-blue-500 px-4 py-2 rounded-md">Your component</button>
-</div>
-
-### Have fun!
-
-Astro Design System template was made by **[@jordienr](https://twitter.com/jordienr)** for personal and commercial use.
+Open Source.
