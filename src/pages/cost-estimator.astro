@@ -1,0 +1,36 @@
+
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import CostCalculator from '../components/calculator/CostCalculator';
+
+const frontmatter = {
+    title: "Project Cost Estimator",
+    description: "Interactive calculator to estimate the running costs of the Snoopiest Engine, from infrastructure to AI generation.",
+    hero: true
+};
+---
+
+<DocLayout frontmatter={frontmatter}>
+    <div class="not-prose mt-8">
+        <p class="text-slate-400 mb-8 max-w-2xl text-lg">
+            This tool provides a transparent breakdown of the costs involved in running the full AI video production pipeline. 
+            Adjust the sliders and dropdowns to visualize the cost difference between "Hobbyist" and "Production" scales.
+        </p>
+
+        <CostCalculator client:load />
+        
+        <div class="mt-16 p-6 border border-yellow-500/20 bg-yellow-500/5 rounded-xl">
+             <h3 class="text-yellow-500 font-bold mb-2 uppercase tracking-wider text-xs flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                </svg>
+                Disclaimer
+             </h3>
+             <p class="text-slate-400 text-sm">
+                Prices are estimates based on early 2026 data. Actual costs may vary by usage and provider.
+                Infrastructure costs (Vercel, GitHub) are monthly, while AI costs are usage-based.
+             </p>
+        </div>
+    </div>
+</DocLayout>
+<!-- HMR Force Update: 2026-01-26 -->

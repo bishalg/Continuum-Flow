@@ -19,4 +19,6 @@ export const SIDEBAR = [
   { text: "Technology", header: true },
   { text: "Tech Stack Flow", link: "/tech-visual" },
   { text: "Stack Implementation", link: "/tech-stack" },
+  { text: "Cost Estimator", link: "/cost-estimator" },
 ];
+// HMR Force Update: 2026-01-26
