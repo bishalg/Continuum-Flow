@@ -41,5 +41,88 @@ In a novel, characters change clothes. The CCMS tracks **"Current Outfit State"*
 *   The **Context-Snoopiest** engine tracks narrative time. When the text says "He donned his armor," the State Manager updates the `Current_Outfit` variable for that character ID in the backbone.
 *   Subsequent video prompts automatically inject the `armor_embedding` instead of the `casual_clothes_embedding` without the text chunk explicitly mentioning armor every time.
 
-> [!TIP]
 > This decoupling allows the narrative agent to focus on *what* is happening, while the CCMS ensures *who* it is happening to remains visually immutable.
+
+---
+
+## Phase 4: Temporal Continuity (Frame Interpolation)
+
+Most modern video generation applications no longer rely on a single image prompt. Instead, they use a **"First Frame & Last Frame"** technique to ensure seamless consistency.
+
+### The "Bridge" Strategy
+The video generator acts as an interpolation engine, filling in the movement between two known states.
+
+1.  **Frame A (Start)**: The actual last frame of the *previous* video clip.
+2.  **Frame B (End)**: A newly generated "Keyframe" representing the target state.
+3.  **Generation**: The AI generates the transformation derived from the text prompt.
+
+<div class="not-prose my-12 bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 rounded-xl p-8 shadow-sm">
+    <div class="text-center mb-8">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">The Interpolation Bridge</h3>
+        <p class="text-slate-500 dark:text-slate-400 text-sm">AI fills the gap between defined states</p>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4 relative">
+        
+        {/* INPUTS COLUMN */}
+        <div class="flex flex-col gap-4 w-full md:w-1/3 z-10">
+            {/* Frame A */}
+            <div class="bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-900 p-3 rounded-lg flex items-center gap-3 shadow-sm">
+                <div class="w-8 h-8 rounded bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold text-xs">A</div>
+                <div>
+                    <div class="text-xs font-bold text-slate-700 dark:text-slate-200">Clip 1 End Frame</div>
+                    <div class="text-[10px] text-slate-500">Visual Anchor (Start)</div>
+                </div>
+            </div>
+            {/* Frame B */}
+            <div class="bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-900 p-3 rounded-lg flex items-center gap-3 shadow-sm">
+                <div class="w-8 h-8 rounded bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold text-xs">B</div>
+                <div>
+                    <div class="text-xs font-bold text-slate-700 dark:text-slate-200">Target Keyframe</div>
+                    <div class="text-[10px] text-slate-500">Visual Anchor (End)</div>
+                </div>
+            </div>
+            {/* Text */}
+            <div class="bg-white dark:bg-slate-900 border border-purple-200 dark:border-purple-900 p-3 rounded-lg flex items-center gap-3 shadow-sm">
+                <div class="w-8 h-8 rounded bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xs">T</div>
+                <div>
+                    <div class="text-xs font-bold text-slate-700 dark:text-slate-200">Action Prompt</div>
+                    <div class="text-[10px] text-slate-500">Narrative Instruction</div>
+                </div>
+            </div>
+        </div>
+
+        {/* PROCESS ARROW */}
+        <div class="hidden md:flex flex-col items-center justify-center w-24 z-0">
+            <div class="h-0.5 w-full bg-gradient-to-r from-slate-300 to-teal-500"></div>
+        </div>
+        <div class="md:hidden h-8 w-0.5 bg-gradient-to-b from-slate-300 to-teal-500"></div>
+
+        {/* AI NODE */}
+        <div class="z-10 bg-slate-900 dark:bg-black border-2 border-teal-500 p-6 rounded-full shadow-[0_0_20px_rgba(45,212,191,0.3)] flex flex-col items-center justify-center w-32 h-32 shrink-0">
+            <div class="text-2xl mb-1">✨</div>
+            <div class="text-xs font-bold text-teal-400 text-center uppercase tracking-wider">Video AI</div>
+            <div class="text-[9px] text-teal-600/80 text-center">Interpolation Engine</div>
+        </div>
+
+         {/* OUTPUT ARROW */}
+        <div class="hidden md:flex flex-col items-center justify-center w-24 z-0">
+            <div class="h-0.5 w-full bg-gradient-to-r from-teal-500 to-slate-300"></div>
+        </div>
+         <div class="md:hidden h-8 w-0.5 bg-gradient-to-b from-teal-500 to-slate-300"></div>
+
+        {/* OUTPUT */}
+        <div class="w-full md:w-1/3 z-10">
+             <div class="bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 p-4 rounded-xl shadow-sm text-center">
+                 <div class="text-3xl mb-2">🎬</div>
+                <div class="font-bold text-slate-800 dark:text-white">Seamless Clip</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Frame A → <span class="text-teal-600">Motion</span> → Frame B
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+This ensures that the character doesn't just "look similar" but is pixels-perfectly continuous from the previous shot.

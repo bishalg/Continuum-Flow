@@ -10,6 +10,7 @@ export const SIDEBAR = [
   { text: "Context Rot", link: "/context-rot" },
   { text: "System Architecture", link: "/architecture" },
   { text: "Core Engine", header: true },
+  { text: "Narrative Compression", link: "/narrative-compression" },
   { text: "Chunking Strategy", link: "/chunking" },
   { text: "Context Engine", link: "/context-management" },
   { text: "Character Consistency", link: "/character-consistency" },

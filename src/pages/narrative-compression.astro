@@ -1,0 +1,268 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+---
+
+<DocLayout title="Narrative Compression Engine" description="Phase 2 Architecture: Applying Semantic Compression to Narrative Generation.">
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none text-slate-700 dark:text-slate-300">
+        <h1>Narrative Compression Engine</h1>
+        
+        <p class="lead text-xl text-slate-600 dark:text-slate-400 mb-8">
+            Applying "Semantic Compression" to Novel-to-Video generation. Treating narrative not as text, but as compile-able state data.
+        </p>
+
+        <h2>The Semantic Compression Pattern</h2>
+        <p>
+            Current LLMs suffer from "Context Rot" in long-form generation. To solve this, we are adopting an architectural pattern inspired by modern code repository packers<sup><a href="#ref-1">[1]</a></sup>.
+        </p>
+
+        <h3>The Core Analogy</h3>
+        <p>
+            The pattern solves context problems by "compressing" code: it parses the Abstract Syntax Tree (AST) and removes implementation details (function bodies), keeping only the definitions (signatures). We apply this exact logic to narrative.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 not-prose my-12">
+            <!-- Code World -->
+            <div class="bg-gray-100 dark:bg-slate-800 border-t-4 border-indigo-500 rounded-lg p-6 relative overflow-hidden shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">💻</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg m-0">Code Repository</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 m-0">Strategy: AST Stripping</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg font-mono text-xs leading-relaxed border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+                    <span class="text-purple-600 dark:text-purple-400">function</span> calculatePhysics() &#123;<br/>
+                    &nbsp;&nbsp;<span class="text-slate-400 dark:text-slate-500 line-through opacity-60">// detailed implementation...</span><br/>
+                    &nbsp;&nbsp;<span class="text-slate-400 dark:text-slate-500 line-through opacity-60">// math logic...</span><br/>
+                    &nbsp;&nbsp;<span class="text-slate-400 dark:text-slate-500 line-through opacity-60">// extensive comments...</span><br/>
+                    &#125;<br/><br/>
+                    <span class="text-indigo-600 dark:text-indigo-400 font-bold">>> COMPRESSED TO HEADER:</span><br/>
+                    <span class="text-purple-600 dark:text-purple-400">declare function</span> calculatePhysics(): <span class="text-purple-600 dark:text-purple-400">void</span>;
+                </div>
+                <div class="mt-4 text-xs text-slate-500 dark:text-slate-500">
+                    <strong>The Insight:</strong> The "Truth" is the Logic Signature. Implementation details are stripped to save tokens.
+                </div>
+            </div>
+
+            <!-- Novel World -->
+            <div class="bg-gray-100 dark:bg-slate-800 border-t-4 border-teal-500 rounded-lg p-6 relative overflow-hidden shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">📖</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg m-0">Narrative (Context-Snoopiest)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 m-0">Strategy: Semantic Compression</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg font-mono text-xs leading-relaxed border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+                    <span class="text-slate-400 dark:text-slate-500 line-through opacity-60">He felt a wave of nostalgia as...</span><br/>
+                    <span class="bg-sky-100 dark:bg-sky-500/20 text-slate-900 dark:text-white px-1 rounded">Arjun picks up the glowing shard.</span><br/>
+                    <span class="text-slate-400 dark:text-slate-500 line-through opacity-60">It reminded him of the winters in...</span><br/>
+                    <span class="bg-sky-100 dark:bg-sky-500/20 text-slate-900 dark:text-white px-1 rounded">The shard pulses red.</span><br/><br/>
+                    <span class="text-teal-600 dark:text-teal-400 font-bold">>> COMPRESSED TO STATE:</span><br/>
+                    &#123; actor: <span class="text-teal-600 dark:text-teal-400">"Arjun"</span>, action: <span class="text-teal-600 dark:text-teal-400">"Take Shard"</span>, prop_state: <span class="text-teal-600 dark:text-teal-400">"Red Pulse"</span> &#125;
+                </div>
+                <div class="mt-4 text-xs text-slate-500 dark:text-slate-500">
+                    <strong>The Insight:</strong> The "Truth" is the Visual State. Internal monologue is "whitespace" that wastes tokens.
+                </div>
+            </div>
+        </div>
+
+        <h2>The Narrative AST (Abstract Story Tree)</h2>
+        <p>Transforming prose into a rigid JSON Schema.</p>
+        <div class="not-prose my-8">
+            <div class="flex flex-col md:flex-row gap-4 items-stretch">
+                 <div class="flex-1 bg-gray-50 dark:bg-slate-900/50 p-4 rounded border border-gray-200 dark:border-slate-700">
+                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Input: Raw Text</div>
+                    <div class="font-mono text-xs text-slate-600 dark:text-slate-400">
+                        The cyber-rain poured down. "Wait!" she screamed. Her robotic arm sparked. She didn't want to fight, but she had to.
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl text-slate-400">→</div>
+                </div>
+                <div class="flex-1 bg-teal-50 dark:bg-teal-900/10 p-4 rounded border border-teal-200 dark:border-teal-500/50">
+                    <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase mb-2">Output: SceneNode JSON</div>
+                    <div class="font-mono text-xs text-teal-700 dark:text-teal-300">
+                        &#123;<br>
+                        &nbsp;&nbsp;"env": "Rain (Cyber)",<br>
+                        &nbsp;&nbsp;"audio": "Scream: 'Wait!'",<br>
+                        &nbsp;&nbsp;"visual_fx": "Sparking Arm",<br>
+                        &nbsp;&nbsp;"subtext": "Reluctant"<br>
+                        &#125;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Network Architecture: Visualized</h2>
+        <p>
+            The following diagram illustrates the flow of data through the Semantic Compression Engine. It visualizes how raw text is ingested, parsed by the "Compressor Worker," structured into a rigid JSON Context Frame (Module C), and finally consumed by the Video Generation Agent.
+        </p>
+
+        <!-- Visualization Section -->
+        <div class="not-prose my-12 bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700 rounded-xl p-8 shadow-sm">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">System Architecture Flow</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">How Data Moves through the Modules</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 relative pb-12">
+                
+                <!-- COLUMN 1: PARSING -->
+                <div class="flex flex-col gap-4 relative z-10">
+                    <div class="bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg p-4 text-center shadow-sm">
+                        <div class="text-xs font-bold text-slate-500 uppercase">Input</div>
+                        <div class="font-bold text-slate-900 dark:text-white">Full Novel Text</div>
+                    </div>
+                    <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-slate-400 dark:border-t-slate-500 mx-auto my-2"></div>
+                    <div class="bg-white dark:bg-slate-800 border-2 border-sky-400 dark:border-sky-500 rounded-lg p-4 text-center shadow-[0_0_15px_rgba(56,189,248,0.1)]">
+                        <div class="text-xs font-bold text-sky-500 dark:text-sky-400 uppercase">Module B</div>
+                        <div class="font-bold text-slate-900 dark:text-white">Compressor Worker</div>
+                        <div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-mono">LLM Parser</div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: STATE MANAGEMENT (The Brain) -->
+                <div class="flex flex-col gap-4 mt-8 md:mt-0 relative z-10">
+                    <div class="h-full flex flex-col justify-center bg-teal-50 dark:bg-teal-900/10 border-2 border-teal-400 dark:border-teal-500 rounded-lg p-4 shadow-[0_0_15px_rgba(45,212,191,0.1)]">
+                        <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase mb-4 text-center">Module C: Context Frame</div>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-slate-900 p-2 rounded border border-gray-200 dark:border-slate-700 text-center shadow-sm">
+                                <div class="text-[10px] text-teal-600 dark:text-teal-300">Visual Registry</div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-2 rounded border border-gray-200 dark:border-slate-700 text-center shadow-sm">
+                                <div class="text-[10px] text-teal-600 dark:text-teal-300">Location State</div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 p-2 rounded border border-gray-200 dark:border-slate-700 text-center shadow-sm">
+                                <div class="text-[10px] text-teal-600 dark:text-teal-300">Last 5 Beats</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 3: GENERATION -->
+                <div class="flex flex-col gap-4 relative z-10">
+                    <div class="bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg p-4 text-center shadow-sm">
+                        <div class="text-xs font-bold text-slate-500 uppercase">Consumer</div>
+                        <div class="font-bold text-slate-900 dark:text-white">Video Gen Agent</div>
+                    </div>
+                    <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-slate-400 dark:border-t-slate-500 mx-auto my-2"></div>
+                    <div class="bg-white dark:bg-slate-800 border-2 border-purple-400 dark:border-purple-500 rounded-lg p-4 text-center shadow-sm">
+                        <div class="text-xs font-bold text-purple-500 dark:text-purple-400 uppercase">Output</div>
+                        <div class="font-bold text-slate-900 dark:text-white">Video Segment</div>
+                        <div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-mono">Updates Registry ↺</div>
+                    </div>
+                </div>
+
+                <!-- Connectors (Visual Only - Absolute positioning for dashed lines) -->
+                <div class="hidden md:block absolute top-1/2 left-[30%] w-[15%] border-t-2 border-gray-300 dark:border-slate-600 border-dashed transform -translate-y-1/2 z-0"></div>
+                <div class="hidden md:block absolute top-1/2 right-[30%] w-[15%] border-t-2 border-gray-300 dark:border-slate-600 border-dashed transform -translate-y-1/2 z-0"></div>
+
+            </div>
+        </div>
+
+        <h2>Module Breakdown</h2>
+
+        <h3>Module A: The "Compressor" Worker (The Parser)</h3>
+        <ul>
+            <li><strong>Role:</strong> Acts as the parsing engine (similar to an AST strategy).</li>
+            <li><strong>Algorithm:</strong>
+                <ol>
+                    <li><strong>Ingest:</strong> Takes a 5-page raw text buffer.</li>
+                    <li><strong>Entity Extraction (NER):</strong> Identifies all Proper Nouns (Characters) and Physical Objects (Items).</li>
+                    <li><strong>State Differential Check:</strong> Compares the current object description with the <code>GlobalRegistry</code>.</li>
+                    <li><strong>Action Distillation:</strong> Summarizes 500 words of dialogue/action into a single atomic "Beat".</li>
+                    <li><strong>Discard:</strong> Removes all "flavor text" (internal monologue, metaphors).</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>Module B: The "State Manager" (The Context Guard)</h3>
+        <p>Instead of feeding the LLM "The last 10,000 words," it constructs a synthetic context frame containing:</p>
+        <ol>
+            <li><strong>The "World State":</strong> Current immutable facts (Time: Night, Weather: Rain, Health: 50%).</li>
+            <li><strong>The "Compressed Context":</strong> The summary of previous chapters (Level 2 Context).</li>
+            <li><strong>The "Active Chunk":</strong> The raw text of the current scene being generated.</li>
+        </ol>
+
+        <h3>Module C: The "Lookahead" Buffer</h3>
+        <ul>
+            <li><strong>Role:</strong> Parallel processing for temporal consistency.</li>
+            <li><strong>Purpose:</strong> To detect <strong>Future State Changes</strong> (e.g., a character losing an arm in Chapter 3) ensuring temporal consistency.</li>
+        </ul>
+
+        <h2>The Protocol Layer (TOON)</h2>
+        <p>
+            To combat "Context Rot," Context-Snoopiest abandons JSON for the Context Window. We utilize <strong>TOON (Token-Oriented Object Notation)</strong> for all state tracking. 
+        </p>
+        <p>
+            Narrative consistency requires tracking hundreds of state variables (wounds, inventory, relationships). JSON's verbosity limits how much history we can retain. By switching to TOON, we fit <strong>3x more chapters</strong> into the same context window, allowing for 'novel-length' memory retention rather than just 'chapter-length'.
+        </p>
+
+        <h3>The "Sweet Spot" Analysis</h3>
+        <p>
+            TOON shines in one specific area: <strong>Uniform Arrays of Objects</strong>. In a novel, you track lists of characters, active props, and environmental states. JSON repeats the keys for every single item, wasting tokens. TOON defines the schema once.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 not-prose my-12">
+            <!-- JSON World -->
+            <div class="bg-gray-100 dark:bg-slate-800 border-t-4 border-red-400 rounded-lg p-6 relative overflow-hidden shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">🐌</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg m-0">Standard JSON</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 m-0">Overhead: High (Repeated Keys)</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg font-mono text-xs leading-relaxed border border-red-200 dark:border-red-900/30 text-slate-600 dark:text-slate-300">
+                    [<br>
+                    &nbsp;&nbsp;&#123; <span class="text-red-600 dark:text-red-400">"name"</span>: "Arjun", <span class="text-red-600 dark:text-red-400">"status"</span>: "injured" &#125;,<br>
+                    &nbsp;&nbsp;&#123; <span class="text-red-600 dark:text-red-400">"name"</span>: "Mira", <span class="text-red-600 dark:text-red-400">"status"</span>: "alert" &#125;,<br>
+                    &nbsp;&nbsp;&#123; <span class="text-red-600 dark:text-red-400">"name"</span>: "Kael", <span class="text-red-600 dark:text-red-400">"status"</span>: "asleep" &#125;<br>
+                    ]
+                </div>
+                <div class="mt-4 text-xs text-slate-500 dark:text-slate-500">
+                    <strong>Result:</strong> ~50 Tokens. Keys "name" and "status" repeated 3x.
+                </div>
+            </div>
+
+            <!-- TOON World -->
+            <div class="bg-gray-100 dark:bg-slate-800 border-t-4 border-green-500 rounded-lg p-6 relative overflow-hidden shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">⚡</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg m-0">TOON Protocol</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 m-0">Overhead: Minimal (Schema Header)</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg font-mono text-xs leading-relaxed border border-green-200 dark:border-green-900/30 text-slate-600 dark:text-slate-300">
+                    characters[3]&#123;<span class="text-green-600 dark:text-green-400">name,status</span>&#125;:<br>
+                    Arjun,injured<br>
+                    Mira,alert<br>
+                    Kael,asleep
+                </div>
+                <div class="mt-4 text-xs text-slate-500 dark:text-slate-500">
+                    <strong>Result:</strong> ~20 Tokens. 60% Reduction in Context Load.
+                </div>
+            </div>
+        </div>
+
+        <h3>Revised "TOON-Native" Workflow</h3>
+        <p>
+            We implement a safe pipeline to use TOON without risking LLM syntax hallucination.
+        </p>
+        <ol>
+            <li><strong>Extract (Safety):</strong> The Agent reads Chapter 1 and outputs <code>scene_data.json</code>. We keep the LLM output as JSON because models are trained heavily on it.</li>
+            <li><strong>Compress (Worker):</strong> A Node.js worker converts the JSON into <code>context_history.toon</code>. This ensures perfect syntax.</li>
+            <li><strong>Inject (Context):</strong> When generating Chapter 2, we load the TOON file into the System Prompt: <em>"Here is the current state of the world in TOON format."</em></li>
+        </ol>
+
+        <hr class="my-12 border-slate-200 dark:border-slate-700" />
+        
+        <div id="ref-1" class="text-sm text-slate-500 dark:text-slate-400">
+            <strong>[1] Reference Architecture:</strong> This pattern is inspired by <a href="https://github.com/yamadashy/repomix" target="_blank" class="text-sky-600 dark:text-sky-400 hover:underline">RepoMix</a>, a tool for packing codebases into LLM contexts using Tree-sitter for semantic understanding.
+        </div>
+
+    </div>
+</DocLayout>
