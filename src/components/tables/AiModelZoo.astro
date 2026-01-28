@@ -1,0 +1,155 @@
+---
+const zooData = [
+    {
+        component: "Logic / Text",
+        model: "Claude 3.5 Sonnet",
+        modelUrl: "https://www.anthropic.com/",
+        provider: "Anthropic API",
+        providerUrl: "https://docs.anthropic.com/",
+        rationale:
+            "Superior reasoning capabilities and larger context window (200k) for analyzing full chapters.",
+    },
+    {
+        component: "Image Gen",
+        model: "Flux.1 [Dev]",
+        modelUrl: "https://blackforestlabs.ai/",
+        provider: "Replicate / Fal.ai",
+        providerUrl: "https://replicate.com/",
+        rationale:
+            "Currently beats Midjourney in prompt adherence and text rendering.",
+    },
+    {
+        component: "Video Gen",
+        model: "Luma Dream Machine",
+        modelUrl: "https://lumalabs.ai/dream-machine",
+        provider: "Luma API",
+        providerUrl: "https://lumalabs.ai/",
+        rationale:
+            'High temporal coherence. Relies on "Keyframe" feature for control.',
+    },
+    {
+        component: "Audio / TTS",
+        model: "ElevenLabs (Turbo v2)",
+        modelUrl: "https://elevenlabs.io/",
+        provider: "ElevenLabs API",
+        providerUrl: "https://elevenlabs.io/api",
+        rationale: "Low latency and highest emotional range.",
+    },
+    {
+        component: "Lip Sync",
+        model: "SyncLabs / SadTalker",
+        modelUrl: "https://synclabs.so/",
+        provider: "API / Local",
+        providerUrl: "",
+        rationale:
+            "Decoupled lip-syncing ensures we can perfect audio performance before mapping to video.",
+    },
+];
+---
+
+<div class="zoo-container not-prose font-sans mt-8 mb-12">
+    <!-- Mobile/Tablet Card View (< lg) -->
+    <div class="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+            zooData.map((item) => (
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                    <div class="mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            {item.component}
+                        </span>
+                        <a
+                            href={item.modelUrl}
+                            target="_blank"
+                            class="text-xl font-bold text-violet-600 dark:text-violet-400 hover:underline"
+                        >
+                            {item.model}
+                        </a>
+                    </div>
+
+                    <div class="mb-4 bg-slate-50 dark:bg-white/5 p-3 rounded-lg border border-slate-100 dark:border-white/5">
+                        <span class="text-[10px] font-bold uppercase text-slate-400 block mb-1">
+                            Provider
+                        </span>
+                        {item.providerUrl ? (
+                            <a
+                                href={item.providerUrl}
+                                target="_blank"
+                                class="text-sm font-mono text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400"
+                            >
+                                {item.provider}
+                            </a>
+                        ) : (
+                            <span class="text-sm font-mono text-slate-700 dark:text-slate-300">
+                                {item.provider}
+                            </span>
+                        )}
+                    </div>
+
+                    <div class="mt-auto">
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic border-l-2 border-violet-200 dark:border-violet-900 pl-3">
+                            "{item.rationale}"
+                        </p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Desktop Table View (>= lg) -->
+    <div
+        class="hidden lg:block overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl"
+    >
+        <table class="w-full text-left text-sm">
+            <thead
+                class="bg-slate-50 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 font-bold uppercase text-xs tracking-wider border-b border-slate-200 dark:border-slate-800"
+            >
+                <tr>
+                    <th class="p-4 w-1/5">Component</th>
+                    <th class="p-4 w-1/5">Model Selected</th>
+                    <th class="p-4 w-1/5">Provider</th>
+                    <th class="p-4 w-2/5">Rationale</th>
+                </tr>
+            </thead>
+            <tbody
+                class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900"
+            >
+                {
+                    zooData.map((item) => (
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                            <td class="p-4 font-bold text-slate-700 dark:text-slate-200">
+                                {item.component}
+                            </td>
+                            <td class="p-4">
+                                <a
+                                    href={item.modelUrl}
+                                    target="_blank"
+                                    class="font-bold text-violet-600 dark:text-violet-400 hover:underline"
+                                >
+                                    {item.model}
+                                </a>
+                            </td>
+                            <td class="p-4">
+                                {item.providerUrl ? (
+                                    <a
+                                        href={item.providerUrl}
+                                        target="_blank"
+                                        class="font-mono text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:underline"
+                                    >
+                                        {item.provider}
+                                    </a>
+                                ) : (
+                                    <span class="font-mono text-xs text-slate-600 dark:text-slate-400">
+                                        {item.provider}
+                                    </span>
+                                )}
+                            </td>
+                            <td class="p-4 text-slate-600 dark:text-slate-300 leading-relaxed text-xs">
+                                {item.rationale}
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

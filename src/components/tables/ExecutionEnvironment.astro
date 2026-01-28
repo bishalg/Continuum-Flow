@@ -1,0 +1,92 @@
+---
+const execData = [
+    {
+        task: "Writing / Logic",
+        environment: "Cloud (Anthropic)",
+        why: "Requires massive GPU/TPU for LLM reasoning.",
+    },
+    {
+        task: "Folder Gen / Management",
+        environment: "Local (Node.js)",
+        why: "Fast file system operations; zero latency UI updates.",
+    },
+    {
+        task: "Image/Video Rendering",
+        environment: "Cloud (Replicate)",
+        why: "Requires A100 GPUs. Too slow/hot to run on local MacBook.",
+    },
+    {
+        task: "Final Assembly",
+        environment: "Hybrid",
+        why: "FFmpeg WASM for quick previews; Cloud Lambda for 4K export.",
+    },
+];
+---
+
+<div class="exec-container not-prose font-sans mt-8 mb-12">
+    <!-- Mobile/Tablet Card View (< lg) -->
+    <div class="lg:hidden space-y-4">
+        {
+            execData.map((item) => (
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-bold text-slate-800 dark:text-white">
+                            {item.task}
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                            {item.environment}
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        <strong class="text-slate-400 dark:text-slate-500 uppercase text-[9px] tracking-widest mr-1">
+                            Why:
+                        </strong>
+                        {item.why}
+                    </p>
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Desktop Table View (>= lg) -->
+    <div
+        class="hidden lg:block overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl"
+    >
+        <table class="w-full text-left text-sm">
+            <thead
+                class="bg-slate-50 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 font-bold uppercase text-xs tracking-wider border-b border-slate-200 dark:border-slate-800"
+            >
+                <tr>
+                    <th class="p-4 w-1/4">Task</th>
+                    <th class="p-4 w-1/4">Environment</th>
+                    <th class="p-4 w-2/4">Why?</th>
+                </tr>
+            </thead>
+            <tbody
+                class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900"
+            >
+                {
+                    execData.map((item) => (
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                            <td class="p-4 font-bold text-slate-700 dark:text-slate-200">
+                                {item.task}
+                            </td>
+                            <td class="p-4">
+                                <span class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 inline-block">
+                                    {item.environment}
+                                </span>
+                            </td>
+                            <td class="p-4 text-slate-600 dark:text-slate-300 leading-relaxed text-xs">
+                                {item.why}
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

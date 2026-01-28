@@ -1,0 +1,265 @@
+---
+const stackData = [
+    {
+        layer: "Monorepo Tooling",
+        recommendation: "NX",
+        recommendationUrl: "https://nx.dev/",
+        rationale:
+            "Best for complex, polyglot projects. Offers a rich plugin ecosystem (including Python), advanced dependency graphing, and robust caching.",
+        alternatives: [{ name: "Turborepo", url: "https://turbo.build/" }],
+    },
+    {
+        layer: "Web Framework",
+        recommendation: "Next.js",
+        recommendationUrl: "https://nextjs.org/",
+        rationale:
+            "The industry standard for building full-stack React applications. Providing optimized performance with SSR, SSG, and React Server Components.",
+        alternatives: [
+            { name: "Remix", url: "https://remix.run/" },
+            { name: "Astro", url: "https://astro.build/" },
+            { name: "TanStack Start", url: "https://tanstack.com/start" },
+        ],
+    },
+    {
+        layer: "Universal Framework",
+        recommendation: "Expo",
+        recommendationUrl: "https://expo.dev/",
+        rationale:
+            "Build for Web, iOS, and Android from a single TypeScript codebase. Features a powerful CLI and OTA updates.",
+        alternatives: [{ name: "Tamagui", url: "https://tamagui.dev/" }],
+    },
+    {
+        layer: "API Layer",
+        recommendation: "tRPC",
+        recommendationUrl: "https://trpc.io/",
+        rationale:
+            "Enables end-to-end typesafe APIs with zero code generation. Unbeatable DX in a full-stack TS monorepo.",
+        alternatives: [
+            { name: "GraphQL", url: "https://graphql.org/" },
+            { name: "REST (OpenAPI)", url: "https://www.openapis.org/" },
+        ],
+    },
+    {
+        layer: "Database",
+        recommendation: "PostgreSQL",
+        recommendationUrl: "https://www.postgresql.org/",
+        rationale:
+            "Powerful, open-source relational database known for reliability and performance at scale.",
+        alternatives: [
+            { name: "MySQL", url: "https://www.mysql.com/" },
+            { name: "SQLite", url: "https://www.sqlite.org/" },
+        ],
+    },
+    {
+        layer: "Database ORM",
+        recommendation: "Drizzle ORM",
+        recommendationUrl: "https://orm.drizzle.team/",
+        rationale:
+            "Lightweight, performant, and type-safe SQL query builder with SQL-like syntax.",
+        alternatives: [{ name: "Prisma", url: "https://www.prisma.io/" }],
+    },
+    {
+        layer: "Authentication",
+        recommendation: "better-auth",
+        recommendationUrl: "https://www.better-auth.com/",
+        rationale:
+            "Comprehensive, framework-agnostic auth for TypeScript. Self-hostable and avoids vendor lock-in.",
+        alternatives: [
+            { name: "Supabase Auth", url: "https://supabase.com/auth" },
+            { name: "Clerk", url: "https://clerk.com/" },
+            { name: "NextAuth.js", url: "https://next-auth.js.org/" },
+            { name: "WorkOS", url: "https://workos.com/" },
+            {
+                name: "Firebase Auth",
+                url: "https://firebase.google.com/products/auth",
+            },
+        ],
+    },
+    {
+        layer: "AI/ML Services",
+        recommendation: "FastAPI",
+        suffix: "(Python)",
+        recommendationUrl: "https://fastapi.tiangolo.com/",
+        rationale:
+            "High-performance Python web framework ideal for building AI/ML APIs and leveraging Python's ML ecosystem.",
+        alternatives: [
+            { name: "Flask", url: "https://flask.palletsprojects.com/" },
+            {
+                name: "Django Ninja",
+                url: "https://django-ninja.rest-framework.com/",
+            },
+        ],
+    },
+    {
+        layer: "Headless CMS",
+        recommendation: "PayloadCMS",
+        recommendationUrl: "https://payloadcms.com/",
+        rationale:
+            "Developer-first, open-source headless CMS built with TS and React. Deep Next.js integration.",
+        alternatives: [
+            { name: "Strapi", url: "https://strapi.io/" },
+            { name: "Directus", url: "https://directus.io/" },
+        ],
+    },
+    {
+        layer: "Client Data Fetching",
+        recommendation: "TanStack Query",
+        recommendationUrl: "https://tanstack.com/query/latest",
+        rationale:
+            "De-facto standard for managing server state in React. Provides caching and background refetching.",
+        alternatives: [
+            { name: "SWR", url: "https://swr.vercel.app/" },
+            {
+                name: "Apollo Client",
+                url: "https://www.apollographql.com/docs/react/",
+            },
+        ],
+    },
+    {
+        layer: "UI Data Grids",
+        recommendation: "TanStack Table",
+        recommendationUrl: "https://tanstack.com/table/latest",
+        rationale:
+            "Headless UI library for building powerful and fully customizable data tables and grids.",
+        alternatives: [{ name: "AG Grid", url: "https://www.ag-grid.com/" }],
+    },
+    {
+        layer: "E2E Testing",
+        recommendation: "Playwright",
+        recommendationUrl: "https://playwright.dev/",
+        rationale:
+            "Modern, reliable E2E testing framework with true cross-browser support and auto-waits.",
+        alternatives: [{ name: "Cypress", url: "https://www.cypress.io/" }],
+    },
+    {
+        layer: "Component Testing",
+        recommendation: "Storybook",
+        recommendationUrl: "https://storybook.js.org/",
+        rationale:
+            "Essential tool for developing UI components in isolation. Serves as a living documentation.",
+        alternatives: [{ name: "Ladle", url: "https://ladle.dev/" }],
+    },
+];
+---
+
+<div class="stack-impl-container not-prose font-sans mt-8 mb-12">
+    <!-- Mobile/Tablet Card View (< lg) -->
+    <div class="lg:hidden space-y-6">
+        {
+            stackData.map((item) => (
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start mb-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                            {item.layer}
+                        </span>
+                    </div>
+
+                    <div class="mb-4">
+                        <a
+                            href={item.recommendationUrl}
+                            target="_blank"
+                            class="text-lg font-bold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-2"
+                        >
+                            {item.recommendation}{" "}
+                            {item.suffix && (
+                                <span class="text-slate-500 font-normal text-sm">
+                                    {item.suffix}
+                                </span>
+                            )}
+                        </a>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                            {item.rationale}
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-black/20 p-3 rounded-lg border border-slate-100 dark:border-white/5">
+                        <h5 class="text-[10px] font-bold uppercase text-slate-400 mb-2">
+                            Alternatives
+                        </h5>
+                        <div class="flex flex-wrap gap-2">
+                            {item.alternatives.map((alt) => (
+                                <a
+                                    href={alt.url}
+                                    target="_blank"
+                                    class="text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 bg-white dark:bg-slate-800 px-2 py-1 rounded border border-slate-200 dark:border-slate-700 transition-colors"
+                                >
+                                    {alt.name}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Desktop Table View (>= lg) -->
+    <div
+        class="hidden lg:block overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl"
+    >
+        <table class="w-full text-left text-sm">
+            <thead
+                class="bg-slate-50 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 font-bold uppercase text-xs tracking-wider border-b border-slate-200 dark:border-slate-800"
+            >
+                <tr>
+                    <th class="p-4 w-1/5">Layer</th>
+                    <th class="p-4 w-1/5">Primary Recommendation</th>
+                    <th class="p-4 w-2/5">Rationale & Key Features</th>
+                    <th class="p-4 w-1/5">Strong Alternatives</th>
+                </tr>
+            </thead>
+            <tbody
+                class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900"
+            >
+                {
+                    stackData.map((item) => (
+                        <tr class="hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                            <td class="p-4 font-bold text-slate-700 dark:text-slate-200">
+                                {item.layer}
+                            </td>
+                            <td class="p-4">
+                                <a
+                                    href={item.recommendationUrl}
+                                    target="_blank"
+                                    class="font-bold text-cyan-600 dark:text-cyan-400 hover:underline"
+                                >
+                                    {item.recommendation}
+                                </a>
+                                {item.suffix && (
+                                    <span class="text-slate-400 text-xs ml-1">
+                                        {item.suffix}
+                                    </span>
+                                )}
+                            </td>
+                            <td class="p-4 text-slate-600 dark:text-slate-300 leading-relaxed text-xs">
+                                {item.rationale}
+                            </td>
+                            <td class="p-4">
+                                <div class="flex flex-wrap gap-x-2 gap-y-1">
+                                    {item.alternatives.map((alt, i) => (
+                                        <>
+                                            <a
+                                                href={alt.url}
+                                                target="_blank"
+                                                class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs decoration-dotted hover:underline"
+                                            >
+                                                {alt.name}
+                                            </a>
+                                            {i <
+                                                item.alternatives.length -
+                                                    1 && (
+                                                <span class="text-slate-300">
+                                                    ,
+                                                </span>
+                                            )}
+                                        </>
+                                    ))}
+                                </div>
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

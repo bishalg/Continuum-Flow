@@ -9,21 +9,9 @@ hero: true
 
 This section outlines best-in-class, open-source technologies used for each layer of the Snoopiest architecture. Each selection is optimized for performance, scalability, and compatibility with modern frameworks like Next.js 15 and React 19.
 
-| Layer | Primary Recommendation | Rationale & Key Features | Strong Alternatives |
-| :--- | :--- | :--- | :--- |
-| **Monorepo Tooling** | **[NX](https://nx.dev/)** | Best for complex, polyglot projects. Offers a rich plugin ecosystem (including Python), advanced dependency graphing, and robust caching. | [Turborepo](https://turbo.build/): Lightweight, optimized for JS/TS. |
-| **Web Framework** | **[Next.js](https://nextjs.org/)** | The industry standard for building full-stack React applications. Providing optimized performance with SSR, SSG, and React Server Components. | [Remix](https://remix.run/), [Astro](https://astro.build/), [TanStack Start](https://tanstack.com/start) |
-| **Universal Framework** | **[Expo](https://expo.dev/)** | Build for Web, iOS, and Android from a single TypeScript codebase. Features a powerful CLI and OTA updates. | [Tamagui](https://tamagui.dev/) |
-| **API Layer** | **[tRPC](https://trpc.io/)** | Enables end-to-end typesafe APIs with zero code generation. Unbeatable DX in a full-stack TS monorepo. | [GraphQL](https://graphql.org/), [REST (OpenAPI)](https://www.openapis.org/) |
-| **Database** | **[PostgreSQL](https://www.postgresql.org/)** | Powerful, open-source relational database known for reliability and performance at scale. | [MySQL](https://www.mysql.com/), [SQLite](https://www.sqlite.org/) |
-| **Database ORM** | **[Drizzle ORM](https://orm.drizzle.team/)** | Lightweight, performant, and type-safe SQL query builder with SQL-like syntax. | [Prisma](https://www.prisma.io/) |
-| **Authentication** | **[better-auth](https://www.better-auth.com/)** | Comprehensive, framework-agnostic auth for TypeScript. Self-hostable and avoids vendor lock-in. | [Supabase Auth](https://supabase.com/auth), [Clerk](https://clerk.com/), [NextAuth.js](https://next-auth.js.org/), [WorkOS](https://workos.com/), [Firebase Auth](https://firebase.google.com/products/auth) |
-| **AI/ML Services** | **[FastAPI](https://fastapi.tiangolo.com/) (Python)** | High-performance Python web framework ideal for building AI/ML APIs and leveraging Python's ML ecosystem. | [Flask](https://flask.palletsprojects.com/), [Django Ninja](https://django-ninja.rest-framework.com/) |
-| **Headless CMS** | **[PayloadCMS](https://payloadcms.com/)** | Developer-first, open-source headless CMS built with TS and React. Deep Next.js integration. | [Strapi](https://strapi.io/), [Directus](https://directus.io/) |
-| **Client Data Fetching** | **[TanStack Query](https://tanstack.com/query/latest)** | De-facto standard for managing server state in React. Provides caching and background refetching. | [SWR](https://swr.vercel.app/), [Apollo Client](https://www.apollographql.com/docs/react/) |
-| **UI Data Grids** | **[TanStack Table](https://tanstack.com/table/latest)** | Headless UI library for building powerful and fully customizable data tables and grids. | [AG Grid](https://www.ag-grid.com/) |
-| **E2E Testing** | **[Playwright](https://playwright.dev/)** | Modern, reliable E2E testing framework with true cross-browser support and auto-waits. | [Cypress](https://www.cypress.io/) |
-| **Component Testing** | **[Storybook](https://storybook.js.org/)** | Essential tool for developing UI components in isolation. Serves as a living documentation. | [Ladle](https://ladle.dev/) |
+import StackImplementation from '../components/tables/StackImplementation.astro';
+
+<StackImplementation />
 
 ---
 
@@ -34,13 +22,9 @@ We utilize a Best-in-Class Modular Approach rather than a single provider. This 
 > [!NOTE]
 > **Cost Analysis**: A detailed breakdown of the costing layer is available in the [Cost Estimator](/cost-estimator).
 
-| Component | Model Selected | Provider | Rationale |
-| :--- | :--- | :--- | :--- |
-| **Logic / Text** | **[Claude 3.5 Sonnet](https://www.anthropic.com/)** | [Anthropic API](https://docs.anthropic.com/) | Superior reasoning capabilities and larger context window (200k) for analyzing full chapters. |
-| **Image Gen** | **[Flux.1 [Dev]](https://blackforestlabs.ai/)** | [Replicate](https://replicate.com/) / [Fal.ai](https://fal.ai/) | Currently beats [Midjourney](https://www.midjourney.com/) in prompt adherence and text rendering. |
-| **Video Gen** | **[Luma Dream Machine](https://lumalabs.ai/dream-machine)** | [Luma API](https://lumalabs.ai/) | High temporal coherence. Relies on "Keyframe" feature for control. |
-| **Audio / TTS** | **[ElevenLabs (Turbo v2)](https://elevenlabs.io/)** | [ElevenLabs API](https://elevenlabs.io/api) | Low latency and highest emotional range. |
-| **Lip Sync** | **[SyncLabs](https://synclabs.so/) / [SadTalker](https://github.com/OpenTalker/SadTalker)** | API / Local | Decoupled lip-syncing ensures we can perfect audio performance before mapping to video. |
+import AiModelZoo from '../components/tables/AiModelZoo.astro';
+
+<AiModelZoo />
 
 ---
 
@@ -96,9 +80,6 @@ Team collaboration on 50GB+ video projects is challenging. We solve this with a 
 
 ### 6. Execution Environment
 
-| Task | Environment | Why? |
-| :--- | :--- | :--- |
-| **Writing / Logic** | **Cloud (Anthropic)** | Requires massive GPU/TPU for LLM reasoning. |
-| **Folder Gen / Management** | **Local (Node.js)** | Fast file system operations; zero latency UI updates. |
-| **Image/Video Rendering** | **Cloud (Replicate)** | Requires A100 GPUs. Too slow/hot to run on local MacBook. |
-| **Final Assembly** | **Hybrid** | FFmpeg WASM for quick previews; Cloud Lambda for 4K export. |
+import ExecutionEnvironment from '../components/tables/ExecutionEnvironment.astro';
+
+<ExecutionEnvironment />
