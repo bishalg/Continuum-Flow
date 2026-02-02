@@ -1,0 +1,56 @@
+name: Generate Whitepaper PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/pages/**'
+      - 'src/content/**'
+      - 'src/config.ts'
+      - 'scripts/generate-pdf.ts'
+      - 'scripts/print-styles.ts'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Install Chromium for Puppeteer
+        run: bun run puppeteer browsers install chrome
+
+      - name: Build site
+        run: bun run build
+
+      - name: Start preview server
+        run: bun run preview &
+
+      - name: Wait for server
+        run: sleep 10
+
+      - name: Generate PDF
+        run: bun run scripts/generate-pdf.ts
+
+      - name: Commit PDF
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add public/whitepaper.pdf
+          # Only commit if there are changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "📄 Update whitepaper PDF [skip ci]"
+          git push

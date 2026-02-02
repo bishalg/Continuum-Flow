@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "pdf": "bun run scripts/generate-pdf.ts",
     "astro": "astro"
   },
   "dependencies": {
