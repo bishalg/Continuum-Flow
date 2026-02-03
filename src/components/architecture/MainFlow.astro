@@ -11,7 +11,7 @@
         <!-- LAYER 1: INPUT -->
         <div class="flex justify-center">
           <div
-            class="node-box bg-slate-800 text-white p-4 sm:p-5 md:p-6 rounded-xl w-full sm:w-64 text-center shadow-lg border-l-4 border-sky-500"
+            class="node-box bg-slate-800 text-white p-4 sm:p-5 md:p-6 rounded-xl w-full sm:w-64 text-center shadow-lg border-l-4 border-sky-500 print-light-card"
           >
             <div class="text-xs text-sky-400 font-bold tracking-wider mb-1">
               SOURCE
@@ -306,5 +306,66 @@
 
   .animate-bounce-subtle {
     animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  /* Print-specific styles for A4 PDF */
+  @media print {
+    .main-flow-container {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 16px auto !important; /* Centered margin */
+      display: flex;
+      justify-content: center;
+      width: 100% !important;
+      transform: scale(0.95); /* Prevent clipping */
+      transform-origin: center top;
+    }
+
+    .main-flow-container > div {
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: none !important;
+      max-width: 100%;
+    }
+
+    .node-box {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Force "Markdown Novel" card to be light in print */
+    .print-light-card {
+      background-color: white !important;
+      border: 2px solid #e2e8f0 !important;
+      color: #0f172a !important; /* Slate-900 */
+    }
+
+    .print-light-card .text-white {
+      color: #0f172a !important;
+    }
+
+    /* Ensure dark backgrounds are visible in print */
+    .bg-slate-800:not(.print-light-card) {
+      background-color: #1e293b !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Gradient backgrounds for print */
+    .bg-gradient-to-br {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Hide animations in print */
+    .animate-pulse-slow,
+    .animate-bounce-subtle {
+      animation: none !important;
+    }
+
+    /* Connectors visible in print */
+    .connector-v {
+      background-color: #94a3b8 !important;
+    }
   }
 </style>

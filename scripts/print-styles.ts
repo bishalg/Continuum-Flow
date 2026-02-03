@@ -70,6 +70,45 @@ export const PRINT_CSS = `
     page-break-inside: avoid;
   }
 
+  /* ============================================
+   * CHART & GRAPH SPECIFIC STYLES
+   * ============================================ */
+
+  /* Prevent charts from breaking across pages */
+  .main-flow-container,
+  .pipeline-chart-container,
+  .prompt-chart-container,
+  .chart-container,
+  .chart-wrapper,
+  canvas {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Chart containers sizing for A4 */
+  .chart-wrapper,
+  .chart-container {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Canvas sizing - maintain aspect ratio */
+  canvas {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 280px !important;
+  }
+
+  /* Main flow diagram - ensure it fits */
+  .main-flow-container {
+    max-width: 100% !important;
+    margin: 20px 0 !important;
+  }
+
+  .main-flow-container > div {
+    padding: 20px !important;
+  }
+
   /* Typography Tweaks for Print */
   body {
     font-size: 11pt;
@@ -93,13 +132,36 @@ export const PRINT_CSS = `
     color: #000000 !important;
   }
 
+  /* Preserve colored backgrounds in dark elements */
+  .bg-slate-800,
+  .bg-slate-900 {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Remove shadows for cleaner print */
+  .shadow-lg, .shadow-xl, .shadow-md, .shadow-sm, .shadow {
+    box-shadow: none !important;
+  }
+
+  /* Ensure gradient backgrounds print */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
 </style>
 `;
 
 /**
  * CSS for the cover page (Light Theme)
  */
-export const COVER_PAGE_HTML = (title: string, subtitle: string, date: string) => `
+export const COVER_PAGE_HTML = (
+  title: string,
+  subtitle: string,
+  date: string,
+) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -169,7 +231,10 @@ export const COVER_PAGE_HTML = (title: string, subtitle: string, date: string) =
 /**
  * CSS for section header pages (Light Theme)
  */
-export const SECTION_HEADER_HTML = (sectionTitle: string, sectionNumber: number) => `
+export const SECTION_HEADER_HTML = (
+  sectionTitle: string,
+  sectionNumber: number,
+) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -207,7 +272,7 @@ export const SECTION_HEADER_HTML = (sectionTitle: string, sectionNumber: number)
   </style>
 </head>
 <body>
-  <div class="section-number">Section ${String(sectionNumber).padStart(2, '0')}</div>
+  <div class="section-number">Section ${String(sectionNumber).padStart(2, "0")}</div>
   <div class="divider"></div>
   <h1 class="section-title">${sectionTitle}</h1>
 </body>
@@ -217,7 +282,9 @@ export const SECTION_HEADER_HTML = (sectionTitle: string, sectionNumber: number)
 /**
  * Table of Contents HTML template
  */
-export const TOC_HTML = (items: { title: string; page: number; isHeader: boolean }[]) => `
+export const TOC_HTML = (
+  items: { title: string; page: number; isHeader: boolean }[],
+) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -273,12 +340,16 @@ export const TOC_HTML = (items: { title: string; page: number; isHeader: boolean
 <body>
   <h1>Table of Contents</h1>
   <ul class="toc-list">
-    ${items.map(item => `
-      <li class="toc-item ${item.isHeader ? 'header' : 'subitem'}">
+    ${items
+      .map(
+        (item) => `
+      <li class="toc-item ${item.isHeader ? "header" : "subitem"}">
         <span class="toc-title">${item.title}</span>
-        ${!item.isHeader ? `<span class="toc-page">${item.page}</span>` : ''}
+        ${!item.isHeader ? `<span class="toc-page">${item.page}</span>` : ""}
       </li>
-    `).join('')}
+    `,
+      )
+      .join("")}
   </ul>
 </body>
 </html>

@@ -1,52 +1,125 @@
 ---
 // Pipeline Load / Processing Intensity Chart
+// Print-optimized: Light theme colors, proper aspect ratio, page-break control
 ---
-<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-white/10 my-8 not-prose">
-    <h3 class="font-bold text-slate-800 dark:text-white mb-2">Processing Pipeline Load</h3>
-    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Execution density across the delivery lifecycle.</p>
-    <div class="chart-container h-[300px] relative">
-        <canvas id="pipelineLoadChart"></canvas>
-    </div>
+
+<div
+  class="pipeline-chart-container bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-white/10 my-8 not-prose"
+>
+  <h3 class="font-bold text-slate-800 dark:text-white mb-2 print:text-black">
+    Processing Pipeline Load
+  </h3>
+  <p
+    class="text-xs text-slate-500 dark:text-slate-400 mb-6 print:text-slate-600"
+  >
+    Execution density across the delivery lifecycle.
+  </p>
+  <div class="chart-wrapper">
+    <canvas id="pipelineLoadChart"></canvas>
+  </div>
 </div>
 
+<style>
+  .pipeline-chart-container {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media print {
+    .pipeline-chart-container {
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: none !important;
+      padding: 16px !important;
+      margin: 16px 0 !important;
+    }
+
+    .chart-wrapper {
+      max-height: 250px;
+    }
+
+    .chart-wrapper canvas {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+  }
+</style>
+
 <script>
-    import Chart from 'chart.js/auto';
+  import Chart from "chart.js/auto";
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Chart Defaults
-        Chart.defaults.font.family = "'Inter', sans-serif";
-        Chart.defaults.color = '#64748B';
-        
-        const commonOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                tooltip: { padding: 12, cornerRadius: 8 },
-                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } }
-            }
-        };
+  document.addEventListener("DOMContentLoaded", () => {
+    // Chart Defaults - Print-friendly dark colors
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = "#374151"; // Darker gray for better print contrast
 
-        const ctx2 = document.getElementById('pipelineLoadChart');
-        if (ctx2) {
-            new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: ["Ingest", "Summarize", "Aggregate", "Prompt Build", "Video Gen"],
-                    datasets: [{
-                        label: 'Intensity',
-                        data: [10, 45, 30, 60, 95],
-                        borderColor: '#0F766E',
-                        backgroundColor: 'rgba(15, 118, 110, 0.1)',
-                        fill: true,
-                        tension: 0.4,
-                        pointBackgroundColor: '#FFFFFF',
-                        pointBorderColor: '#0F766E',
-                        pointBorderWidth: 2,
-                        pointRadius: 4
-                    }]
-                },
-                options: { ...commonOptions, scales: { y: { beginAtZero: true }, x: { grid: { display: false } } } }
-            });
-        }
-    });
+    const commonOptions = {
+      responsive: true,
+      maintainAspectRatio: true, // FIXED: Preserve aspect ratio to prevent skewing
+      aspectRatio: 2, // Standard 2:1 width:height ratio
+      plugins: {
+        tooltip: { padding: 12, cornerRadius: 8 },
+        legend: {
+          position: "bottom" as const,
+          labels: {
+            usePointStyle: true,
+            padding: 20,
+            color: "#1f2937", // Dark text for print
+          },
+        },
+      },
+    };
+
+    const ctx2 = document.getElementById(
+      "pipelineLoadChart",
+    ) as HTMLCanvasElement | null;
+    if (ctx2) {
+      new Chart(ctx2, {
+        type: "line",
+        data: {
+          labels: [
+            "Ingest",
+            "Summarize",
+            "Aggregate",
+            "Prompt Build",
+            "Video Gen",
+          ],
+          datasets: [
+            {
+              label: "Intensity",
+              data: [10, 45, 30, 60, 95],
+              borderColor: "#0d9488", // Teal-600: Good contrast on white
+              backgroundColor: "rgba(13, 148, 136, 0.15)", // Lighter fill for print
+              fill: true,
+              tension: 0.4,
+              pointBackgroundColor: "#ffffff",
+              pointBorderColor: "#0d9488",
+              pointBorderWidth: 2,
+              pointRadius: 5,
+            },
+          ],
+        },
+        options: {
+          ...commonOptions,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: "#374151" },
+              grid: { color: "#e5e7eb" },
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: "#374151" },
+            },
+          },
+        },
+      });
+    }
+  });
 </script>
