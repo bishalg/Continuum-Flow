@@ -80,7 +80,7 @@ async function generateAllSections(): Promise<string[]> {
  * Main generator entry point
  */
 async function main(): Promise<void> {
-    console.log('🚀 Context-Snoopiest PDF Generator\n');
+    console.log('🚀 Continuum Flow PDF Generator\n');
 
     // Parse arguments
     const args = process.argv.slice(2);

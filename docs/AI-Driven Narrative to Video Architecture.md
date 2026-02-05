@@ -1,18 +1,18 @@
-# **Architectural Documentation: Context-Snoopiest Narrative-to-Video Generation System**
+# **Architectural Documentation: Continuum Flow Narrative-to-Video Generation System**
 
 ## **Executive Summary**
 
 The convergence of Large Language Models (LLMs) and Generative Video technology presents an unprecedented opportunity for the automated adaptation of long-form narrative literature into visual media. However, this domain is currently bottlenecked by a critical architectural limitation: **Context Management**. While modern LLMs boast expanded context windows, they fundamentally struggle with the "Lost-in-the-Middle" phenomenon when processing documents the size of a novel (80,000 to 120,000 words). Furthermore, the translation of narrative text into video requires not just semantic understanding, but rigorous **state maintenance**—tracking the physical location, emotional arc, and inventory of characters across thousands of scenes.
 
-This document details the comprehensive architecture of **Context-Snoopiest**, a proprietary agentic framework designed to ingest raw Markdown-formatted story chapters and output high-fidelity, temporally constrained video scene directives. Unlike standard Integrated Development Environment (IDE) assistants like Cursor, which rely on Retrieval-Augmented Generation (RAG) and heuristic context sliding for codebases, Context-Snoopiest implements a **Hierarchical Recursive Summarization Architecture**. This architecture creates a "living backbone" of narrative state, allowing the system to maintain character arcs, emotional continuity, and environmental consistency across thousands of generated video segments without suffering from context decay.
+This document details the comprehensive architecture of **Continuum Flow**, a proprietary agentic framework designed to ingest raw Markdown-formatted story chapters and output high-fidelity, temporally constrained video scene directives. Unlike standard Integrated Development Environment (IDE) assistants like Cursor, which rely on Retrieval-Augmented Generation (RAG) and heuristic context sliding for codebases, Continuum Flow implements a **Hierarchical Recursive Summarization Architecture**. This architecture creates a "living backbone" of narrative state, allowing the system to maintain character arcs, emotional continuity, and environmental consistency across thousands of generated video segments without suffering from context decay.
 
-The project transforms Markdown story files into a sequence of 10-second video segments. This specific temporal constraint necessitates a novel "Content Chunking Strategy" that transcends simple paragraph splitting, instead employing semantic density analysis to align textual pacing with visual timing. By leveraging an agentic loop that actively curates its own context—deciding what to summarize, what to retain in high resolution, and what to discard—Context-Snoopiest automates the role of a continuity editor, ensuring that the final video output adheres to the logic of the narrative source material.
+The project transforms Markdown story files into a sequence of 10-second video segments. This specific temporal constraint necessitates a novel "Content Chunking Strategy" that transcends simple paragraph splitting, instead employing semantic density analysis to align textual pacing with visual timing. By leveraging an agentic loop that actively curates its own context—deciding what to summarize, what to retain in high resolution, and what to discard—Continuum Flow automates the role of a continuity editor, ensuring that the final video output adheres to the logic of the narrative source material.
 
 ## 
 
 ## **1\. Project Overview and Operational Scope**
 
-The primary objective of the Context-Snoopiest project is to build an automated pipeline that converts a textual story, specifically a novel formatted in Markdown, into a coherent sequence of video clips. This goes beyond simple "text-to-video" generation; it is a system of **narrative adaptation**.
+The primary objective of the Continuum Flow project is to build an automated pipeline that converts a textual story, specifically a novel formatted in Markdown, into a coherent sequence of video clips. This goes beyond simple "text-to-video" generation; it is a system of **narrative adaptation**.
 
 ### **1.1 The Source Material: Markdown as a Structured Narrative Database**
 
@@ -33,11 +33,11 @@ The core process involves organizing these story elements to generate a video, w
 
 ### **1.3 The Core Challenge: The Context Horizon**
 
-Standard LLM interactions are stateless or rely on a sliding window of recent tokens. For a novel, this is catastrophic. A detail mentioned in Chapter 1 (e.g., "The protagonist has a limp in his left leg") effectively falls off the "context horizon" by Chapter 3\. If the model generates Chapter 10 without this information, it will hallucinate a healthy walk cycle. Standard RAG solutions, which retrieve information based on keyword similarity, often fail here because the query "How does he walk?" might not semantically overlap with the Chapter 1 text "His old war injury flared up." Context-Snoopiest addresses this by treating the narrative as a **State Machine** rather than a text stream.
+Standard LLM interactions are stateless or rely on a sliding window of recent tokens. For a novel, this is catastrophic. A detail mentioned in Chapter 1 (e.g., "The protagonist has a limp in his left leg") effectively falls off the "context horizon" by Chapter 3\. If the model generates Chapter 10 without this information, it will hallucinate a healthy walk cycle. Standard RAG solutions, which retrieve information based on keyword similarity, often fail here because the query "How does he walk?" might not semantically overlap with the Chapter 1 text "His old war injury flared up." Continuum Flow addresses this by treating the narrative as a **State Machine** rather than a text stream.
 
 ## **2\. System Architecture: Pre-processing and Definition Phase**
 
-Before a single frame of video is generated, the system must establish the "Ground Truth" of the story world. In a traditional film production, this is the pre-production phase: casting, costume design, and location scouting. In Context-Snoopiest, this is an automated agentic workflow that builds a static reference database. This phase is critical because generative video models (unlike text models) require explicit visual instructions for every frame to prevent hallucination or morphing of character identities.
+Before a single frame of video is generated, the system must establish the "Ground Truth" of the story world. In a traditional film production, this is the pre-production phase: casting, costume design, and location scouting. In Continuum Flow, this is an automated agentic workflow that builds a static reference database. This phase is critical because generative video models (unlike text models) require explicit visual instructions for every frame to prevent hallucination or morphing of character identities.
 
 ### **2.1 Character Profile Definition**
 
@@ -110,7 +110,7 @@ The chunking process follows a strict "Atomic Scene" logic to ensure that video 
 3. **Duration Estimation**: The system calculates the estimated duration of the segment using the weighted algorithm.  
    * *If Estimated Duration \< 10s*: The system appends the next semantic unit.  
    * *If Estimated Duration \> 10s*: The system forces a split at the nearest semantic boundary (sentence or clause level).  
-4. **Coherence Check**: A lightweight "Snoopiest" sub-agent reviews the split. If a sentence is cut in a way that destroys meaning (e.g., split between subject and predicate), the boundary is shifted, even if it slightly violates the 10s soft-limit (forcing a hard-limit check in the video generation phase to speed up playback).
+4. **Coherence Check**: A lightweight "Continuum Flow" sub-agent reviews the split. If a sentence is cut in a way that destroys meaning (e.g., split between subject and predicate), the boundary is shifted, even if it slightly violates the 10s soft-limit (forcing a hard-limit check in the video generation phase to speed up playback).
 
 ### **3.3 The "Micro-Cliffhanger" Heuristic**
 
@@ -118,9 +118,9 @@ To maintain viewer engagement across these short 8-second clips, the chunking al
 
 ## 
 
-## **4\. Agentic AI & Context Management Architecture: Context-Snoopiest**
+## **4\. Agentic AI & Context Management Architecture: Continuum Flow**
 
-This section details the core innovation of the project: the **Context-Snoopiest** architecture. This system manages the trade-off between the infinite depth of a novel and the finite constraints of the LLM context window. It is the "brain" that remembers the story so the video generator doesn't have to.
+This section details the core innovation of the project: the **Continuum Flow** architecture. This system manages the trade-off between the infinite depth of a novel and the finite constraints of the LLM context window. It is the "brain" that remembers the story so the video generator doesn't have to.
 
 ### **4.1 The Theoretical Imperative: Why RAG Fails for Novels**
 
@@ -130,9 +130,9 @@ Retrieval-Augmented Generation (RAG) is the industry standard for large context 
 * *RAG Failure*: If the system asks "How does he open the door?", RAG might retrieve generic information about doors or keys from the training data, or fail to connect the specific key from Chapter 1 because the semantic overlap between "rusty iron key" and "obsidian door" is low.  
 * *Narrative State*: A novel is a *causal chain*, not a bag of facts. The "Context" must remember that the User *has Key \= True*.
 
-### **4.2 The "Snoopiest" Hierarchical Summarization Strategy**
+### **4.2 The "Continuum Flow" Hierarchical Summarization Strategy**
 
-Context-Snoopiest implements a recursive, tree-structured memory system, inspired by methods like RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval), but modified for sequential narrative.
+Continuum Flow implements a recursive, tree-structured memory system, inspired by methods like RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval), but modified for sequential narrative.
 
 #### **4.2.1 Level 0: The Working Window (The "Unrolled Loop")**
 
@@ -156,7 +156,7 @@ The highest level is the "Narrative Backbone." This is a continuously updated do
 
 ### **4.3 The Agentic Loop: Assessment and Decision**
 
-The "Snoopiest" engine operates an active loop for every generation cycle, utilizing an "Assess-Decide-Act" pattern:
+The "Continuum Flow" engine operates an active loop for every generation cycle, utilizing an "Assess-Decide-Act" pattern:
 
 1. **State Assessment**: The agent analyzes the current chunk of text.  
 2. **Context Query**: It asks, "Do I need information from the past to visualize this?" (e.g., referencing a prop mentioned earlier).  
@@ -168,13 +168,13 @@ The "Snoopiest" engine operates an active loop for every generation cycle, utili
 
 ### **4.4 Automated Intelligent Context Management vs. Automatic Windowing**
 
-Unlike systems that simply slide a window (dropping the oldest tokens), Context-Snoopiest utilizes **Semantic Retention**. The agent explicitly decides *what* to keep. If a vital plot point occurs on Page 1, it is flagged for permanent retention in the Level 3 backbone. If Page 2 is irrelevant fluff, it is discarded from context immediately. This ensures high-quality output regardless of the model's native context window, effectively "unrolling" the narrative into a manageable stream of dependencies.6
+Unlike systems that simply slide a window (dropping the oldest tokens), Continuum Flow utilizes **Semantic Retention**. The agent explicitly decides *what* to keep. If a vital plot point occurs on Page 1, it is flagged for permanent retention in the Level 3 backbone. If Page 2 is irrelevant fluff, it is discarded from context immediately. This ensures high-quality output regardless of the model's native context window, effectively "unrolling" the narrative into a manageable stream of dependencies.6
 
-### **4.5 Comparative Analysis: Context-Snoopiest vs. Cursor IDE**
+### **4.5 Comparative Analysis: Continuum Flow vs. Cursor IDE**
 
-To understand the unique value proposition of Context-Snoopiest, we must contrast it with Cursor, a leading AI-powered IDE. While both manage context, their goals and architectures are fundamentally different.
+To understand the unique value proposition of Continuum Flow, we must contrast it with Cursor, a leading AI-powered IDE. While both manage context, their goals and architectures are fundamentally different.
 
-| Feature | Cursor IDE Context Management | Context-Snoopiest Architecture |
+| Feature | Cursor IDE Context Management | Continuum Flow Architecture |
 | :---- | :---- | :---- |
 | **Primary Mechanism** | **RAG & Sliding Window**: Indexes codebase vectors; retrieves based on similarity. | **Hierarchical Summarization**: Maintains a recursive tree of narrative summaries. |
 | **Temporal Awareness** | **Low**: Treats code as a spatial graph (dependencies, imports). | **High**: Treats text as a chronological sequence (Cause \-\> Effect). |
@@ -183,11 +183,11 @@ To understand the unique value proposition of Context-Snoopiest, we must contras
 | **Summarization Strategy** | **Compaction**: Compresses chat history to fit tokens.5 | **Synthesis**: Rewrites narrative beats into higher-level abstractions (Level 1/2/3). |
 | **Handling Overflows** | Drops oldest chat turns or summarizes purely by token count. | Selectively drops non-essential narrative details while locking critical plot points. |
 
-**Key Insight**: Cursor is designed for *random access* (jumping between files), whereas Snoopiest is designed for *sequential consistency* (ensuring Chapter 10 aligns with Chapter 1). Cursor's RAG approach would fail to capture the *emotional accumulation* of a story, which is why Snoopiest requires the hierarchical backbone.
+**Key Insight**: Cursor is designed for *random access* (jumping between files), whereas Continuum Flow is designed for *sequential consistency* (ensuring Chapter 10 aligns with Chapter 1). Cursor's RAG approach would fail to capture the *emotional accumulation* of a story, which is why Continuum Flow requires the hierarchical backbone.
 
 ### **4.6 DeepAgent State Architecture**
 
-"DeepAgent State Architecture: Following the principles of [Context Management for DeepAgents](https://www.blog.langchain.com/context-management-for-deepagents/), Context-Snoopiest abandons the traditional 'Sliding Window' memory model. Instead, we treat the Narrative-to-Video pipeline as a long-horizon state machine. We utilize TOON to maintain a persistent, structured 'World State' that survives across hundreds of generation steps, ensuring that the 100th minute of video is as consistent as the 1st."
+"DeepAgent State Architecture: Following the principles of [Context Management for DeepAgents](https://www.blog.langchain.com/context-management-for-deepagents/), Continuum Flow abandons the traditional 'Sliding Window' memory model. Instead, we treat the Narrative-to-Video pipeline as a long-horizon state machine. We utilize TOON to maintain a persistent, structured 'World State' that survives across hundreds of generation steps, ensuring that the 100th minute of video is as consistent as the 1st."
 
 ## **5. Narrative Semantic Compression: The "RepoMix" Pattern**
 
@@ -197,7 +197,7 @@ Current LLMs suffer from "Context Rot" in long-form generation. To solve this, w
 
 RepoMix solves the context problem by "compressing" code: it parses the Abstract Syntax Tree (AST) and removes implementation details (function bodies), keeping only the definitions (signatures). We apply this exact logic to narrative.
 
-| RepoMix Concept (Code) | Context-Snoopiest Concept (Novel) |
+| RepoMix Concept (Code) | Continuum Flow Concept (Novel) |
 | :--- | :--- |
 | **Input** | Source Code (.ts, .py) | Novel Chapters (.md) |
 | **Parser** | web-tree-sitter (AST Parser) | **Narrative AST Agent** (LLM/SLM) |
@@ -252,7 +252,7 @@ To implement valid "Semantic Compression," we introduce three new modules to the
 *   **Why?**: To prevent generating a video in Ch1 that contradicts Ch3 (e.g., if Ch3 reveals the character was secretly holding a hidden item the whole time, Ch1 generation needs to hint at that or at least not contradict it).
 
 ### **5.4 Why This Matters**
-By stripping prose and internal monologue to build an efficient "Visual Script," we reduce token usage by approximately **70%** while maintaining **100%** of the visual continuity. This allows `Context-Snoopiest` to "hold" the entire novel's visual arc in memory, just as RepoMix allows an LLM to hold an entire codebase's architecture.
+By stripping prose and internal monologue to build an efficient "Visual Script," we reduce token usage by approximately **70%** while maintaining **100%** of the visual continuity. This allows `Continuum Flow` to "hold" the entire novel's visual arc in memory, just as RepoMix allows an LLM to hold an entire codebase's architecture.
 
 ### **5.5 Visual Semantic Architecture**
 We have visualized this "Narrative Compression Engine" logic in the following architecture diagram, illustrating the parallel between Code ASTs and Narrative ASTs.
@@ -276,7 +276,7 @@ The workflow is a linear pipeline with recursive feedback loops, designed to mov
    * *Input*: Chapter\_01.md.  
    * *Process*: Text is parsed, weighted for time, and split.  
    * *Output*: processed/Chapter\_01\_chunks.json (List of 10s text segments).  
-4. **Step 3: The Snoopiest Loop (Context Enrichment)**  
+4. **Step 3: The Continuum Loop (Context Enrichment)**  
    * *Input*: Chunk N.  
    * *Context*: Backbone Summary \+ Previous Scene State.  
    * *Process*: Agent enriches Chunk N with visual details (e.g., "Add scar to character face," "Ensure lighting is dim").  
@@ -315,7 +315,7 @@ This roadmap elaborates on the phased execution strategy, providing specific tec
   * *Traversable Tree*: The system builds a JSON tree where Volume\_I contains children Chapter\_1...Chapter\_10.  
 * **Context Resolution**: When generating Chapter 5, the system loads the Volume\_I summary (for global context) and the Chapter\_4 summary (for immediate continuity). This resolves the context limitation by providing "telescoping" detail—high detail for recent events, low detail for distant ones.
 
-### **Phase 3: Architecture Design & Implementation (The Snoopiest Engine)**
+### **Phase 3: Architecture Design & Implementation (The Continuum Flow Engine)**
 
 * **Code Architecture**: Implementation of the Python-based controller that orchestrates the agents.  
 * **State Management**: Utilizing a lightweight database (e.g., SQLite or a simple JSON store) to track the "Current State" pointer as the system iterates through the book.  
@@ -357,7 +357,7 @@ The CCMS does not just use text descriptions. During the **Pre-processing Phase*
 
 In a novel, characters change clothes. The CCMS tracks "Current Outfit State."
 
-* The **Context-Snoopiest** engine tracks narrative time. When the text says "He donned his armor," the State Manager updates the Current\_Outfit variable for that character ID.  
+* The **Continuum Flow** engine tracks narrative time. When the text says "He donned his armor," the State Manager updates the Current\_Outfit variable for that character ID.  
 * Subsequent video prompts automatically inject the armor\_embedding instead of the casual\_clothes\_embedding without the text chunk explicitly mentioning armor every time. This solves the "implicit context" problem where a human reader knows he is wearing armor, but the text doesn't restate it in every sentence.
 
 ## 
@@ -378,7 +378,7 @@ The Chunking Agent analyzes the **Sentiment and Pacing** of the text segment.
 The architecture actually creates *two* parallel streams from the chunk:
 
 1. **Visual Prompt**: "A man stands on a cliff looking at the sea." (Used for Video Gen).  
-2. **Audio Prompt**: "The wind roared, and he whispered, 'It is finished.'" (Used for TTS/Audio Gen). The Chunking Strategy must ensure that the *spoken duration* of the Audio Prompt does not exceed 8 seconds. If the dialogue is too long, the system splits the Visual Prompt into two 8-second clips (Part A and Part B) but keeps the audio flowing across them (or splits the audio if synchronization is required). The Snoopiest Agent manages this synchronization flag.
+2. **Audio Prompt**: "The wind roared, and he whispered, 'It is finished.'" (Used for TTS/Audio Gen). The Chunking Strategy must ensure that the *spoken duration* of the Audio Prompt does not exceed 8 seconds. If the dialogue is too long, the system splits the Visual Prompt into two 8-second clips (Part A and Part B) but keeps the audio flowing across them (or splits the audio if synchronization is required). The Continuum Flow Agent manages this synchronization flag.
 
 ## 
 
@@ -388,4 +388,4 @@ As noted in the comparison with Cursor and other agentic frameworks 28, the futu
 
 * **Parallel Processing**: Because the "Backbone" is established in Phase 2, we can theoretically spin up 50 "Director Agents" to generate Chapter 1 through Chapter 50 simultaneously. They do not need to wait for each other, because the *Context* (the Backbone) is already computed. This parallelization capability is a massive advantage over linear generation models and allows for rapid production of entire seasons of content.
 
-The **Context-Snoopiest** architecture represents a shift from "Context Window Reliance" to "Context Management Intelligence." By acknowledging that no context window will ever be large enough for a truly granular, consistent adaptation of a novel, we move the burden of memory from the model's raw token buffer to an external, agent-managed hierarchical structure. This system differentiates itself from tools like Cursor IDE by prioritizing **sequential causal dependency** over semantic similarity search, providing a robust blueprint for the future of automated media adaptation.
+The **Continuum Flow** architecture represents a shift from "Context Window Reliance" to "Context Management Intelligence." By acknowledging that no context window will ever be large enough for a truly granular, consistent adaptation of a novel, we move the burden of memory from the model's raw token buffer to an external, agent-managed hierarchical structure. This system differentiates itself from tools like Cursor IDE by prioritizing **sequential causal dependency** over semantic similarity search, providing a robust blueprint for the future of automated media adaptation.

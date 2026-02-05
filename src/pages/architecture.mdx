@@ -12,13 +12,13 @@ The **Novel Video Generator** architecture is designed for high-fidelity narrati
 
 ## Application Data Pipeline
 
-The following diagram visualizes the end-to-end flow from raw Markdown input to the final 10-second video segments. The architecture is split into three primary phases: Static Asset Definition, Dynamic Context Management (The "Snoopiest" Agent), and the Prompt Construction Engine.
+The following diagram visualizes the end-to-end flow from raw Markdown input to the final 10-second video segments. The architecture is split into three primary phases: Static Asset Definition, Dynamic Context Management (The "Continuum Flow" Agent), and the Prompt Construction Engine.
 
 <MainFlow />
 
 ## Pre-processing and Definition Phase
 
-Before a single frame of video is generated, the system must establish the "Ground Truth" of the story world. In a traditional film production, this is the pre-production phase: casting, costume design, and location scouting. In Context-Snoopiest, this is an automated agentic workflow that builds a static reference database. This phase is critical because generative video models (unlike text models) require explicit visual instructions for every frame to prevent hallucination or morphing of character identities.
+Before a single frame of video is generated, the system must establish the "Ground Truth" of the story world. In a traditional film production, this is the pre-production phase: casting, costume design, and location scouting. In Continuum Flow, this is an automated agentic workflow that builds a static reference database. This phase is critical because generative video models (unlike text models) require explicit visual instructions for every frame to prevent hallucination or morphing of character identities.
 
 ### Character Profile Definition
 

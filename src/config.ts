@@ -1,5 +1,5 @@
 export const SITE = {
-  title: "Context-Snoopiest",
+  title: "Continuum Flow",
   description: "AI-Driven Narrative to Video Architecture",
   defaultLanguage: "en_US",
 };

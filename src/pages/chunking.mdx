@@ -42,7 +42,7 @@ The chunking process follows a strict "Atomic Scene" logic to ensure that video 
 3.  **Duration Estimation**: The system calculates the estimated duration of the segment using the weighted algorithm.
     *   *If Estimated Duration < 10s*: The system appends the next semantic unit.
     *   *If Estimated Duration > 10s*: The system forces a split at the nearest semantic boundary (sentence or clause level).
-4.  **Coherence Check**: A lightweight "Snoopiest" sub-agent reviews the split. If a sentence is cut in a way that destroys meaning (e.g., split between subject and predicate), the boundary is shifted.
+4.  **Coherence Check**: A lightweight "Continuum Flow" sub-agent reviews the split. If a sentence is cut in a way that destroys meaning (e.g., split between subject and predicate), the boundary is shifted.
 
 <SegmentationFlow />
 

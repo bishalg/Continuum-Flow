@@ -14,7 +14,7 @@ async function createCoverPage(doc: PDFDocument): Promise<void> {
     const helvetica = await doc.embedFont(StandardFonts.Helvetica);
 
     // Title
-    const title = 'Context-Snoopiest';
+    const title = 'Continuum Flow';
     page.drawText(title, {
         x: 50,
         y: height - 200,
@@ -179,7 +179,7 @@ async function addPageNumbers(doc: PDFDocument, startPage: number = 0): Promise<
  * Merge all section PDFs into a single whitepaper
  */
 async function mergePDFs(): Promise<void> {
-    console.log('🔗 Context-Snoopiest PDF Merger\n');
+    console.log('🔗 Continuum Flow PDF Merger\n');
 
     const sections = getPDFSections();
     const mergedDoc = await PDFDocument.create();

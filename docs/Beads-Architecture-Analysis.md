@@ -1,10 +1,10 @@
-# **Architectural Analysis: Beads Concepts for Context-Snoopiest**
+# **Architectural Analysis: Beads Concepts for Continuum Flow**
 
 ## **Executive Summary**
 
-The "Beads" architecture (as implemented in `steveyegge/beads`) presents a paradigm for **Distributed, Persistent Agent Memory**. While Context-Snoopiest already implements a "Hierarchical Summarization Architecture" (Levels 1-3), the Beads model offers specific primitives—specifically **Hypergraph Tasking** and **Git-as-Database**—that could harden the system's "Context Backbone."
+The "Beads" architecture (as implemented in `steveyegge/beads`) presents a paradigm for **Distributed, Persistent Agent Memory**. While Continuum Flow already implements a "Hierarchical Summarization Architecture" (Levels 1-3), the Beads model offers specific primitives—specifically **Hypergraph Tasking** and **Git-as-Database**—that could harden the system's "Context Backbone."
 
-This document analyzes these patterns to determine their applicability to the Context-Snoopiest Narrative-to-Video generation pipeline.
+This document analyzes these patterns to determine their applicability to the Continuum Flow Narrative-to-Video generation pipeline.
 
 ---
 
@@ -16,8 +16,8 @@ Beads avoids traditional databases (Postgres/SQLite) in favor of storing state a
 *   **Consistency**: Relies on Git's atomic commits and merge conflict resolution.
 *   **Portability**: The "Database" is cloned alongside the code.
 
-### **1.2 Relevance to Context-Snoopiest**
-Context-Snoopiest currently relies on a "static reference database" (Character Sheets, Location Registry) created during the Pre-processing Phase. Adopting a Git-Backed State for these assets offers distinct advantages:
+### **1.2 Relevance to Continuum Flow**
+Continuum Flow currently relies on a "static reference database" (Character Sheets, Location Registry) created during the Pre-processing Phase. Adopting a Git-Backed State for these assets offers distinct advantages:
 
 | Feature | Current Approach (JSON Assets) | Beads Approach (Git-Backed JSONL) | Recommendation |
 | :--- | :--- | :--- | :--- |
@@ -41,7 +41,7 @@ A "Bead" is not just a text file; it is a node in a **dependency graph**.
 *   `Bead C` (Context) is a parent of `Bead D`.
 *   This removes the fragility of "Line Numbers" or "File Names" as references.
 
-### **2.2 Relevance to Context-Snoopiest**
+### **2.2 Relevance to Continuum Flow**
 Our current "Narrative AST" (Abstract Story Tree) is effectively a graph, but often serialized linearly. Moving to a strict Hypergraph model strengthens the **Causal Chain**.
 
 *   **Current**: `Chapter_05.md` follows `Chapter_04.md` (Implicit Sequence).
@@ -57,10 +57,10 @@ If the *Prefetcher Worker* finds a key event in Chapter 10, it creates a "Bead" 
 ### **3.1 The Pattern**
 Beads implements an "Auto-Archiver" or "Immune System" that constantly scans the graph to **compact** completed tasks into summaries, preventing the graph from exploding in size/complexity.
 
-### **3.2 Alignment with "Snoopiest" Levels**
+### **3.2 Alignment with "Continuum Flow" Levels**
 This is functionally identical to our **Level 1 -> Level 2** aggregation. However, Beads introduces the concept of **Semantic Decay**.
 *   **Idea**: Nodes that haven't been referenced by any active agent for $N$ cycles are automatically "frozen" or "archived" to a separate file, removing them from the active context window entirely.
-*   **Snoopiest Fit**: High. This formalizes our manual "Context Rot" prevention.
+*   **Continuum Flow Fit**: High. This formalizes our manual "Context Rot" prevention.
 
 ---
 

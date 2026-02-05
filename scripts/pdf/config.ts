@@ -16,7 +16,7 @@ export const PDF_CONFIG = {
         left: '12mm',
         right: '12mm'
     },
-    baseUrl: 'http://localhost:4321/Context-Snoopiest',
+    baseUrl: 'http://localhost:4321/Continuum-Flow',
     outputDir: 'public/pdf',
     sectionsDir: 'public/pdf/sections',
     finalOutput: 'public/pdf/whitepaper.pdf',
@@ -30,15 +30,15 @@ export const PDF_CONFIG = {
  */
 export function getPDFSections(): PDFSection[] {
     let index = 0;
-    
+
     return SIDEBAR
         .filter(item => item.link && !item.header)
         .map(item => {
             index++;
-            const slug = item.link === '/' 
-                ? 'introduction' 
+            const slug = item.link === '/'
+                ? 'introduction'
                 : item.link.replace(/^\//, '').replace(/\/$/, '');
-            
+
             return {
                 index,
                 slug,

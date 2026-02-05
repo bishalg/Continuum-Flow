@@ -39,7 +39,7 @@ For every single video generation task, this embedding is passed alongside the t
 
 In a novel, characters change clothes. The CCMS tracks **"Current Outfit State"** as a discrete variable.
 
-- The **Context-Snoopiest** engine tracks narrative time. When the text says "He donned his armor," the State Manager updates the `Current_Outfit` variable for that character ID in the backbone.
+- The **Continuum Flow** engine tracks narrative time. When the text says "He donned his armor," the State Manager updates the `Current_Outfit` variable for that character ID in the backbone.
 - Subsequent video prompts automatically inject the `armor_embedding` instead of the `casual_clothes_embedding` without the text chunk explicitly mentioning armor every time.
 
 > This decoupling allows the narrative agent to focus on _what_ is happening, while the CCMS ensures _who_ it is happening to remains visually immutable.

@@ -1,17 +1,17 @@
-# Context-Snoopiest
+# Continuum Flow
 
 **AI-Driven Narrative to Video Architecture**
 
-![Build Status](https://github.com/bishalg/Context-Snoopiest/actions/workflows/deploy.yml/badge.svg)
-[![Documentation](https://img.shields.io/badge/docs-Context--Snoopiest-blue)](https://bishalg.github.io/Context-Snoopiest/)
+![Build Status](https://github.com/bishalg/Continuum-Flow/actions/workflows/deploy.yml/badge.svg)
+[![Documentation](https://img.shields.io/badge/docs-Continuum--Flow-blue)](https://bishalg.github.io/Continuum-Flow/)
 
-Context-Snoopiest is an advanced architecture designed to maintain context and character consistency in AI-generated video narratives. By leveraging intelligent chunking strategies, context management engines, and agentic workflows, it solves the "amnesia" problem often found in long-form generative video content.
+Continuum Flow is an advanced architecture designed to maintain context and character consistency in AI-generated video narratives. By leveraging intelligent chunking strategies, context management engines, and agentic workflows, it solves the "amnesia" problem often found in long-form generative video content.
 
 ---
 
 ## 📚 Documentation
 
-The full documentation is available at: **[https://bishalg.github.io/Context-Snoopiest/](https://bishalg.github.io/Context-Snoopiest/)**
+The full documentation is available at: **[https://bishalg.github.io/Continuum-Flow/](https://bishalg.github.io/Continuum-Flow/)**
 
 ---
 
@@ -21,19 +21,19 @@ The system is broken down into several core components documented in detail:
 
 ### Core Engine
 
-- **[Chunking Strategy](https://bishalg.github.io/Context-Snoopiest/chunking)**: How narratives are broken down into manageable, consistency-preserving segments.
-- **[Context Engine](https://bishalg.github.io/Context-Snoopiest/context-management)**: The brain of the system that manages state, memory, and narrative flow across chunks.
-- **[Character Consistency](https://bishalg.github.io/Context-Snoopiest/character-consistency)**: Techniques and pipelines ensuring visual and behavioral fidelity of characters throughout the video.
+- **[Chunking Strategy](https://bishalg.github.io/Continuum-Flow/chunking)**: How narratives are broken down into manageable, consistency-preserving segments.
+- **[Context Engine](https://bishalg.github.io/Continuum-Flow/context-management)**: The brain of the system that manages state, memory, and narrative flow across chunks.
+- **[Character Consistency](https://bishalg.github.io/Continuum-Flow/character-consistency)**: Techniques and pipelines ensuring visual and behavioral fidelity of characters throughout the video.
 
 ### Implementation
 
-- **[Workflows](https://bishalg.github.io/Context-Snoopiest/workflows)**: Detailed workflows for the generation pipeline.
-- **[Agentic Workflow](https://bishalg.github.io/Context-Snoopiest/agentic-workflow)**: How AI agents collaborate to execute the generation tasks.
-- **[Roadmap](https://bishalg.github.io/Context-Snoopiest/roadmap)**: Future development plans and features.
+- **[Workflows](https://bishalg.github.io/Continuum-Flow/workflows)**: Detailed workflows for the generation pipeline.
+- **[Agentic Workflow](https://bishalg.github.io/Continuum-Flow/agentic-workflow)**: How AI agents collaborate to execute the generation tasks.
+- **[Roadmap](https://bishalg.github.io/Continuum-Flow/roadmap)**: Future development plans and features.
 
 ### Technology
 
-- **[Tech Stack](https://bishalg.github.io/Context-Snoopiest/tech-stack)**: Frameworks, libraries, and tools used.
+- **[Tech Stack](https://bishalg.github.io/Continuum-Flow/tech-stack)**: Frameworks, libraries, and tools used.
 
 ---
 
@@ -41,16 +41,16 @@ The system is broken down into several core components documented in detail:
 
 Detailed breakdown of the primary documentation modules:
 
-- **[Context Rot](https://bishalg.github.io/Context-Snoopiest/context-rot)**: Explores why massive context leads to reasoning failure and how we maintain "Haystack" density to prevent logical decay.
-- **[System Architecture](https://bishalg.github.io/Context-Snoopiest/architecture)**: Multi-layered framework that separates static world-building from dynamic state tracking to minimize AI hallucinations.
-- **[Chunking Strategy](https://bishalg.github.io/Context-Snoopiest/chunking)**: Proprietary algorithm that aligns textual pacing with 8-second cinematic constraints using weighted token analysis.
-- **[Narrative Compression](https://bishalg.github.io/Context-Snoopiest/narrative-compression)**: Hierarchical recursive summarization techniques that transform raw text into a stateful, "living backbone."
-- **[Context Engine](https://bishalg.github.io/Context-Snoopiest/context-management)**: The system's "brain" responsible for state maintenance, memory, and narrative flow across novel-length content.
-- **[Character Consistency](https://bishalg.github.io/Context-Snoopiest/character-consistency)**: Visual identity locking and behavioral fidelity pipelines that prevent character drift during the video generation process.
-- **[Differential State Specification](https://bishalg.github.io/Context-Snoopiest/differential-state-management)**: Advanced management of state changes between scenes to ensure physical and emotional continuity.
-- **[Orchestrator Architecture](https://bishalg.github.io/Context-Snoopiest/orchestrator-architecture)**: Technical deep dive into the multi-agent hierarchy that coordinates the end-to-end cinematic generation pipeline.
-- **[Agentic Workflow](https://bishalg.github.io/Context-Snoopiest/agentic-workflow)**: Detailed guide on how specialized AI agents collaborate autonomously to execute complex narrative adaptation tasks.
-- **[Roadmap](https://bishalg.github.io/Context-Snoopiest/roadmap)**: Strategic vision for the project's evolution, focusing on real-time state tracking and expanded support for non-linear narratives.
+- **[Context Rot](https://bishalg.github.io/Continuum-Flow/context-rot)**: Explores why massive context leads to reasoning failure and how we maintain "Haystack" density to prevent logical decay.
+- **[System Architecture](https://bishalg.github.io/Continuum-Flow/architecture)**: Multi-layered framework that separates static world-building from dynamic state tracking to minimize AI hallucinations.
+- **[Chunking Strategy](https://bishalg.github.io/Continuum-Flow/chunking)**: Proprietary algorithm that aligns textual pacing with 8-second cinematic constraints using weighted token analysis.
+- **[Narrative Compression](https://bishalg.github.io/Continuum-Flow/narrative-compression)**: Hierarchical recursive summarization techniques that transform raw text into a stateful, "living backbone."
+- **[Context Engine](https://bishalg.github.io/Continuum-Flow/context-management)**: The system's "brain" responsible for state maintenance, memory, and narrative flow across novel-length content.
+- **[Character Consistency](https://bishalg.github.io/Continuum-Flow/character-consistency)**: Visual identity locking and behavioral fidelity pipelines that prevent character drift during the video generation process.
+- **[Differential State Specification](https://bishalg.github.io/Continuum-Flow/differential-state-management)**: Advanced management of state changes between scenes to ensure physical and emotional continuity.
+- **[Orchestrator Architecture](https://bishalg.github.io/Continuum-Flow/orchestrator-architecture)**: Technical deep dive into the multi-agent hierarchy that coordinates the end-to-end cinematic generation pipeline.
+- **[Agentic Workflow](https://bishalg.github.io/Continuum-Flow/agentic-workflow)**: Detailed guide on how specialized AI agents collaborate autonomously to execute complex narrative adaptation tasks.
+- **[Roadmap](https://bishalg.github.io/Continuum-Flow/roadmap)**: Strategic vision for the project's evolution, focusing on real-time state tracking and expanded support for non-linear narratives.
 
 ---
 
@@ -73,7 +73,7 @@ This project is built with modern web technologies:
 ## 📁 Project Structure
 
 ```
-Context-Snoopiest/
+Continuum-Flow/
 ├── src/
 │   ├── components/        # Reusable UI components (34 components)
 │   ├── layouts/           # Page layout templates
@@ -111,11 +111,11 @@ Context-Snoopiest/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/bishalg/Context-Snoopiest.git
-   cd Context-Snoopiest
+   git clone https://github.com/bishalg/Continuum-Flow.git
+   cd Continuum-Flow
    ```
 
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    bun install
    ```
@@ -128,7 +128,7 @@ Start the development server with hot-reload:
 bun run dev
 ```
 
-The site will be available at `http://localhost:4321/Context-Snoopiest/`
+The site will be available at `http://localhost:4321/Continuum-Flow/`
 
 ### Build
 
@@ -199,7 +199,7 @@ The project is automatically deployed to GitHub Pages via GitHub Actions on ever
 
 1. Build the Astro site (`bun run build`)
 2. Deploy `dist/` to GitHub Pages
-3. Available at: [https://bishalg.github.io/Context-Snoopiest/](https://bishalg.github.io/Context-Snoopiest/)
+3. Available at: [https://bishalg.github.io/Continuum-Flow/](https://bishalg.github.io/Continuum-Flow/)
 
 ---
 

@@ -6,6 +6,6 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bishalg.github.io',
-  base: '/Context-Snoopiest',
+  base: '/Continuum-Flow',
   integrations: [react(), tailwind(), mdx()],
 });
