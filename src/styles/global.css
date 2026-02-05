@@ -450,8 +450,6 @@
     content: none;
   }
 
-  <<<<<<< HEAD
-
   /* Headers - ensure readable */
   h1,
   h2,
@@ -463,11 +461,8 @@
     page-break-after: avoid;
   }
 
-  /* Code blocks */
-  =======
-
   /* Code blocks - ensure readable */
-  >>>>>>>210d157 (feat(pdf): implement modular PDF generation system and automated workflow) pre,
+  pre,
   code {
     background: #f5f5f5 !important;
     border: 1px solid #ddd !important;

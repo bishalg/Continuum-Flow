@@ -179,7 +179,7 @@ export async function waitForServer(
 
             const res = await fetch(url, {
                 signal: controller.signal,
-                method: 'HEAD'
+                method: 'GET'
             });
 
             clearTimeout(fetchTimeout);

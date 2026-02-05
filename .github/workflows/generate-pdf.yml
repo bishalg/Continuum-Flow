@@ -7,7 +7,7 @@ on:
       - 'src/pages/**'
       - 'src/content/**'
       - 'src/config.ts'
-      - 'scripts/generate-pdf.ts'
+      - 'scripts/pdf/**'
       - 'scripts/print-styles.ts'
   workflow_dispatch:
 
@@ -25,7 +25,15 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run: bun install
+        run: HUSKY=0 bun install
+
+      - name: Install system dependencies for Puppeteer
+        run: |
+          sudo apt-get update
+          # Install core dependencies (most have auto-redirects for t64)
+          sudo apt-get install -y libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxext6 libxfixes3 libxrandr2 libgbm1
+          # Handle libasound2 specifically as it's ambiguous on Ubuntu 24.04
+          sudo apt-get install -y libasound2t64 || sudo apt-get install -y libasound2
 
       - name: Install Chromium for Puppeteer
         run: bun run puppeteer browsers install chrome
@@ -33,24 +41,21 @@ jobs:
       - name: Build site
         run: bun run build
 
-      - name: Start preview server
-        run: bun run preview &
-
-      - name: Wait for server
-        run: sleep 10
-
       - name: Generate PDF
-        run: bun run scripts/generate-pdf.ts
+        run: |
+          bun run preview &
+          bun run pdf
+          pkill -f astro
 
       - name: Commit PDF
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add public/whitepaper.pdf
+          git add public/whitepaper.pdf public/pdf/whitepaper.pdf
           # Only commit if there are changes
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "📄 Update whitepaper PDF [skip ci]"
+          git commit --no-verify -m "📄 Update whitepaper PDF [skip ci]"
           git push

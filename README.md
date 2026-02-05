@@ -83,7 +83,10 @@ Continuum-Flow/
 │   ├── config.ts          # Site configuration and sidebar navigation
 │   └── design.config.ts   # Design system tokens and theme
 ├── scripts/
-│   ├── generate-pdf.ts    # PDF generation script (Puppeteer-based)
+│   ├── pdf/               # PDF generation engine
+│   │   ├── generator.ts   # Puppeteer-based section generation
+│   │   ├── merger.ts      # PDF merging and TOC generation
+│   │   └── config.ts      # PDF engine configuration
 │   └── print-styles.ts    # Print-specific CSS and HTML templates
 ├── public/                # Static assets (images, fonts, etc.)
 ├── docs/                  # Additional documentation
@@ -94,7 +97,8 @@ Continuum-Flow/
 
 - **`src/config.ts`**: Defines site metadata and sidebar navigation structure
 - **`src/design.config.ts`**: Design system configuration (colors, typography, spacing)
-- **`scripts/generate-pdf.ts`**: Automated whitepaper PDF generation from documentation pages
+- **`scripts/pdf/`**: Modular PDF generation engine
+- **`scripts/pdf/generator.ts`**: Automated whitepaper PDF generation from documentation pages
 - **`astro.config.mjs`**: Astro framework configuration
 - **`tailwind.config.cjs`**: Tailwind CSS customization
 
@@ -166,8 +170,8 @@ This script:
   - Section headers for each documentation category
   - All content pages with proper styling
   - Page numbering (excluding cover and TOC)
-- Outputs to `public/whitepaper.pdf`
-- Preserves individual chapter PDFs in `public/chapters/` for debugging
+- Outputs to `public/pdf/whitepaper.pdf` (and `public/whitepaper.pdf` for compatibility)
+- Preserves individual chapter PDFs in `public/pdf/sections/` for debugging
 
 **Technical Details:**
 

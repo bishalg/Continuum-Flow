@@ -254,7 +254,9 @@ async function mergePDFs(): Promise<void> {
     await fs.writeFile(PDF_CONFIG.finalOutput, mergedPdfBytes);
     console.log(`   ✅ Saved: ${PDF_CONFIG.finalOutput}`);
 
-    // console.log(`   ✅ Copied: ${PDF_CONFIG.legacyOutput}`);
+    // Also copy to legacy location for backward compatibility
+    await fs.writeFile(PDF_CONFIG.legacyOutput, mergedPdfBytes);
+    console.log(`   ✅ Copied to: ${PDF_CONFIG.legacyOutput}`);
 
     // Summary
     const totalPages = mergedDoc.getPageCount();

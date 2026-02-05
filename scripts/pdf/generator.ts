@@ -96,8 +96,8 @@ async function main(): Promise<void> {
 
         if (!isServerUp) {
             console.log('⚠️  Server not running. Starting preview server...');
-            // Use npx astro preview directly with detached process
-            serverProcess = spawn('npx', ['astro', 'preview', '--port', '4321'], {
+            // Use bun run preview directly with detached process
+            serverProcess = spawn('bun', ['run', 'preview', '--port', '4321'], {
                 stdio: 'ignore',
                 shell: true,
                 cwd: process.cwd(),
@@ -108,7 +108,7 @@ async function main(): Promise<void> {
 
             // Wait longer for server to start
             console.log('⏳ Waiting for server to start...');
-            const ready = await waitForServer(PDF_CONFIG.baseUrl, 20000);
+            const ready = await waitForServer(PDF_CONFIG.baseUrl, 30000);
             if (!ready) {
                 console.error('❌ Failed to start server automatically.');
                 console.log('\n💡 Please start the server manually in another terminal:');

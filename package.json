@@ -9,10 +9,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "pdf:single": "tsx scripts/pdf/generator.ts --page",
-    "pdf:all": "tsx scripts/pdf/generator.ts",
-    "pdf:merge": "tsx scripts/pdf/merger.ts",
-    "pdf": "npm run pdf:all && npm run pdf:merge",
+    "pdf:single": "bun scripts/pdf/generator.ts --page",
+    "pdf:all": "bun scripts/pdf/generator.ts",
+    "pdf:merge": "bun scripts/pdf/merger.ts",
+    "pdf": "bun run pdf:all && bun run pdf:merge",
     "prepare": "husky"
   },
   "dependencies": {
