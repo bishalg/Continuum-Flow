@@ -1,0 +1,87 @@
+---
+// CriticLogic.astro
+---
+
+<section
+  class="mt-24 bg-white dark:bg-slate-900 rounded-3xl shadow-xl border-l-8 border-pink-500 p-8 md:p-12 dark:border-l-pink-600"
+>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+    <div class="md:col-span-1">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">
+        The "Critic" Logic
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6"
+      >
+        This is the single most important addition. By giving an agent the
+        power to say <strong class="text-pink-600 dark:text-pink-400"
+          >"NO"</strong
+        >
+        , we effectively create an automated quality assurance department.
+      </p>
+      <div
+        class="bg-pink-50 dark:bg-pink-900/10 p-4 rounded-xl text-xs text-pink-800 dark:text-pink-300 font-mono border border-pink-100 dark:border-pink-900/30"
+      >
+        if (prompt.conflictsWith(state)) &#123;<br />
+        &nbsp;&nbsp;return REJECT;<br />
+        &#125; else &#123;<br />
+        &nbsp;&nbsp;return APPROVE;<br />
+        &#125;
+      </div>
+    </div>
+
+    <div class="md:col-span-2">
+      <!-- HTML Process Flow -->
+      <div
+        class="flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <div
+          class="bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-6 rounded-2xl text-center w-full"
+        >
+          <div
+            class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2"
+          >
+            INPUT
+          </div>
+          <div class="font-bold text-slate-700 dark:text-slate-200">
+            Draft Prompt
+          </div>
+        </div>
+        <div
+          class="text-slate-300 dark:text-slate-600 text-2xl rotate-90 md:rotate-0"
+        >
+          →
+        </div>
+        <div
+          class="bg-pink-50 dark:bg-pink-900/10 border-2 border-pink-200 dark:border-pink-900/30 p-6 rounded-2xl text-center w-full relative shadow-lg shadow-pink-500/5"
+        >
+          <div
+            class="text-[10px] font-black text-pink-400 uppercase tracking-widest mb-2"
+          >
+            CRITIC
+          </div>
+          <div class="font-bold text-pink-800 dark:text-pink-300">
+            Validation
+          </div>
+        </div>
+        <div
+          class="text-slate-300 dark:text-slate-600 text-2xl rotate-90 md:rotate-0"
+        >
+          →
+        </div>
+        <div
+          class="bg-sky-50 dark:bg-sky-900/10 border-2 border-sky-200 dark:border-sky-900/30 p-6 rounded-2xl text-center w-full shadow-lg shadow-sky-500/5"
+        >
+          <div
+            class="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-2"
+          >
+            OUTPUT
+          </div>
+          <div class="font-bold text-sky-800 dark:text-sky-300">
+            Render Video
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

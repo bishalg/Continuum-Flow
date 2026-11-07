@@ -17,6 +17,7 @@ export const SIDEBAR = [
   { text: "Context Management", header: true },
   { text: "Context Engine", link: "/context-management" },
   { text: "Character Consistency", link: "/character-consistency" },
+  { text: "Reference Image Pipeline", link: "/reference-image-pipeline" },
   { text: "Differential State", link: "/differential-state-management" },
 
   { text: "Orchestration", header: true },

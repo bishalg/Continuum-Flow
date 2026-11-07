@@ -1,0 +1,191 @@
+---
+import AgentCard from './AgentCard.astro';
+---
+
+<section
+  class="bg-slate-50 dark:bg-black/30 rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-16 border border-slate-200 dark:border-white/5 mb-12 sm:mb-24 relative overflow-hidden"
+>
+  <div
+    class="absolute inset-0 bg-grid-slate-200/50 dark:bg-grid-slate-800/50 [mask-image:linear-gradient(0deg,transparent,white)] pointer-events-none"
+  >
+  </div>
+
+  <div class="text-center mb-12 relative z-10">
+    <h2
+      class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-2"
+    >
+      Swarm Architecture Map
+    </h2>
+    <p class="text-slate-500 dark:text-slate-400">
+      Visualizing the Non-Linear Data Flow
+    </p>
+  </div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <!-- 1. TOP: ORCHESTRATOR -->
+    <div class="mb-16">
+      <div class="flex justify-center mb-8 relative">
+        <div class="w-full sm:w-72">
+            <AgentCard 
+                title="The Showrunner"
+                role="Assigns Jobs, Manages State"
+                badge="The Brain"
+                borderColor="border-t-sky-500"
+                badgeBg="bg-sky-100 dark:bg-sky-900/30"
+                badgeText="text-sky-700 dark:text-sky-300"
+                animate="animate-pulse-border-sky"
+            />
+        </div>
+      </div>
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          The <strong>Showrunner</strong> acts as the central nervous system. It implements <strong>Smart Truncation</strong> (the Head/Tail Pattern): holding immutable core rules (the Head) and the immediate narrative chunk (the Tail) in its active window, while truncating and storing the middle history to a vector memory store. It actively prevents context rot by delegating heavy, data-intensive tasks (like visual anchoring) to specialized <strong>Sub-Agents</strong>, keeping its own context lightweight and fast.
+        </p>
+      </div>
+    </div>
+
+    <!-- CONNECTOR: Split (hidden on mobile) -->
+    <div
+      class="absolute top-[8rem] left-1/2 -translate-x-1/2 w-[60%] h-10 border-t-2 border-l-2 border-r-2 border-slate-300 dark:border-slate-600 rounded-t-2xl -z-0 hidden md:block"
+    >
+    </div>
+
+    <!-- 2. MIDDLE: PARALLEL WINGS -->
+    <div
+      class="grid grid-cols-1 gap-6 sm:gap-12 md:grid-cols-2 mb-8 sm:mb-16 relative"
+    >
+      <!-- Left: Art -->
+      <div class="space-y-6">
+        <div class="flex justify-center">
+            <div class="w-full max-w-xs">
+                <AgentCard 
+                    title="Art Department"
+                    badge="Visuals"
+                    borderColor="border-t-amber-500"
+                    badgeBg="bg-amber-100 dark:bg-amber-900/30"
+                    badgeText="text-amber-700 dark:text-amber-400"
+                >
+                    <ul class="text-xs text-slate-500 dark:text-slate-400 mt-3 space-y-1.5 text-left pl-4">
+                        <li>• Casting (Face Gen)</li>
+                        <li>• Location Scouting</li>
+                    </ul>
+                </AgentCard>
+            </div>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed px-4">
+          Operating in parallel with narrative analysis, the <strong
+            >Art Department</strong
+          > focuses on visual consistency. The <em>Casting Agent</em> generates
+          master reference images for every identified character, while the <em
+            >Location Scout</em
+          > extracts environment descriptors to build stable LoRAs or embeddings.
+          This ensures that when a scene is rendered, the visuals are pulled from
+          a pre-validated "Story Bible."
+        </p>
+      </div>
+
+      <!-- Right: Writer -->
+      <div class="space-y-6">
+        <div class="flex justify-center">
+            <div class="w-full max-w-xs">
+                <AgentCard 
+                    title="Writers' Room"
+                    badge="Narrative"
+                    borderColor="border-t-teal-500"
+                    badgeBg="bg-teal-100 dark:bg-teal-900/30"
+                    badgeText="text-teal-700 dark:text-teal-400"
+                >
+                    <ul class="text-xs text-slate-500 dark:text-slate-400 mt-3 space-y-1.5 text-left pl-4">
+                        <li>• Hierarchical Summary</li>
+                        <li>• Context "Continuum Flow"</li>
+                    </ul>
+                </AgentCard>
+            </div>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed px-4">
+          The <strong>Writers' Room</strong> handles the "Continuum Flow" context logic.
+          Instead of simple memory, it uses a hierarchical approach: different agents
+          summarize chapters in parallel, and a reconciliation layer ensures that
+          facts (like a character's inventory or an injury) are tracked accurately
+          across scene boundaries, preventing narrative contradictions.
+        </p>
+      </div>
+    </div>
+
+    <!-- CONNECTOR: Merge -->
+    <div
+      class="absolute top-[28rem] left-1/2 -translate-x-1/2 w-[60%] h-10 border-b-2 border-l-2 border-r-2 border-slate-300 dark:border-slate-600 rounded-b-2xl -z-0 hidden md:block"
+    >
+    </div>
+
+    <!-- 3. CENTER: DIRECTOR -->
+    <div class="mb-16 relative z-10 pt-8">
+      <div class="flex justify-center mb-8">
+        <div class="w-full sm:w-72">
+            <AgentCard 
+                title="Director Agent"
+                role="Combines Art + Text → Prompt"
+                badge="Synthesis"
+                borderColor="border-t-slate-700 dark:border-white/10"
+                badgeBg="bg-slate-700 dark:bg-black"
+                badgeText="text-white"
+                animate="animate-pulse-border-white !bg-slate-800 dark:!bg-black !text-white"
+            />
+        </div>
+      </div>
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          The <strong>Director Agent</strong> is the synthesizer. It takes the validated
+          visual assets from the Art Dept and the refined narrative context from
+          the Writers' Room to construct the final prompt directives. It handles
+          the translation from "Story Language" to "Model Language," injecting technical
+          camera angles and lighting moods derived from the global state.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. BOTTOM: CRITIC LOOP -->
+    <div class="relative z-10">
+      <div class="flex justify-center mb-8">
+        <div class="relative">
+          <!-- The Loop Line -->
+          <div
+            class="absolute top-1/2 -left-16 w-16 h-24 border-l-2 border-b-2 border-dashed border-pink-400 rounded-bl-2xl pointer-events-none -translate-y-[100%] opacity-60"
+          >
+          </div>
+          <div
+            class="absolute -top-16 -left-20 text-pink-600 dark:text-pink-400 text-[10px] font-bold bg-pink-50 dark:bg-pink-900/20 px-2 py-1 rounded shadow-sm border border-pink-200 dark:border-pink-900/30"
+          >
+            RETRY
+          </div>
+
+          <div class="w-72">
+              <AgentCard 
+                  title="QA Critic"
+                  badge="The Gatekeeper"
+                  borderColor="border-t-pink-500"
+                  badgeBg="bg-pink-100 dark:bg-pink-900/30"
+                  badgeText="text-pink-700 dark:text-pink-300"
+                  animate="!bg-pink-50/50 dark:!bg-pink-900/10 !border-pink-100 dark:!border-pink-900/30"
+              >
+                  <div class="flex justify-center gap-4 mt-4">
+                    <span class="text-xs font-bold text-red-500 dark:text-red-400 bg-red-100 dark:bg-red-900/20 px-2 py-1 rounded">❌ Reject</span>
+                    <span class="text-xs font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20 px-2 py-1 rounded">✅ Approve</span>
+                  </div>
+              </AgentCard>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          The <strong>QA Critic</strong> serves as the final barrier. It operates
+          on a "Zero Compromise" principle, validating the Director's output against
+          the Story Bible. If the prompt implies a scene at night but the state
+          specifies a sunlit environment, the Critic <strong>REJECTS</strong> the
+          work, forcing a retry with corrected parameters to avoid expensive, inaccurate
+          renders.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

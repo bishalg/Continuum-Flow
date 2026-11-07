@@ -1,0 +1,87 @@
+---
+// ParadigmShift.astro
+---
+
+<section class="mb-12 sm:mb-24">
+  <div class="text-center mb-8 sm:mb-12">
+    <h2
+      class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-3 sm:mb-4"
+    >
+      Why Agentic?
+    </h2>
+    <p
+      class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed"
+    >
+      Standard pipelines are fragile. If one step fails, the output fails. An
+      agentic swarm is resilient, utilizing specialized roles to critique and
+      improve work before final rendering.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 sm:gap-8 lg:grid-cols-2">
+    <!-- Old Way -->
+    <div
+      class="bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 opacity-80 hover:opacity-100 transition-all shadow-sm hover:shadow-md group"
+    >
+      <h3
+        class="font-bold text-slate-500 dark:text-slate-400 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-lg sm:text-xl group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors"
+      >
+        <span
+          class="text-2xl sm:text-3xl grayscale group-hover:grayscale-0 transition-all"
+          >⛓️</span
+        > The Old Linear Pipe
+      </h3>
+      <div class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+        <div class="flex items-center gap-3">
+          <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>Sequential
+          (Slow)
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>No Feedback
+          Loop
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>Errors flow
+          to output
+        </div>
+      </div>
+    </div>
+
+    <!-- New Way -->
+    <div
+      class="bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border-2 border-sky-500/50 hover:border-sky-500 shadow-xl shadow-sky-500/10 relative overflow-hidden group transition-all"
+    >
+      <div
+        class="absolute top-0 right-0 bg-sky-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl shadow-md"
+      >
+        NEW STANDARD
+      </div>
+      <h3
+        class="font-bold text-sky-600 dark:text-sky-400 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-lg sm:text-xl"
+      >
+        <span class="text-2xl sm:text-3xl animate-bounce-slow">🐝</span> The Agentic
+        Swarm
+      </h3>
+      <div class="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-2.5 h-2.5 rounded-full bg-teal-500 shadow-sm shadow-teal-500/50"
+          >
+          </div><strong>Parallel</strong> Asset Generation
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="w-2.5 h-2.5 rounded-full bg-pink-500 shadow-sm shadow-pink-500/50"
+          >
+          </div><strong>Active Critique</strong> & Self-Correction
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="w-2.5 h-2.5 rounded-full bg-sky-500 shadow-sm shadow-sky-500/50"
+          >
+          </div><strong>Orchestrator</strong> State Management
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

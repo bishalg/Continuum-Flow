@@ -38,6 +38,14 @@ In practice, LLMs exhibit a **Recency Bias** (remembering the end) and a **Prima
 
 This is not a limitation of total memory, but a limitation of **Effective Attention**.
 
+### Failed Mitigation Strategies
+Before arriving at modern Context Engineering, production teams tested two common approaches that ultimately broke down under scale:
+1. **Naive Truncation:** Simply chopping off historical data (e.g., keeping only the last 5 turns) caused agents to lose their reasoning abilities, treating follow-up questions as entirely new conversations.
+2. **LLM Summarization:** Asking an LLM to summarize the middle of a context window before passing it forward proved too inconsistent. It removed predictability and control over what critical data was retained or discarded.
+
+### The "11th-Turn Evaluation"
+Because users rarely restart their sessions, conversations naturally bloat. Modern teams are implementing "11th-turn evaluations" where they proactively load 10 turns of a conversation and strictly test the 11th turn to pinpoint exactly when context rot sets in. We use this exact methodology to test our compression engine.
+
 ---
 
 ## The Antidote: High-Density Context Engineering

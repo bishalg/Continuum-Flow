@@ -1,0 +1,30 @@
+---
+// AgentCard.astro
+interface Props {
+  title: string;
+  role: string;
+  description?: string;
+  badge: string;
+  borderColor: string;
+  badgeBg: string;
+  badgeText: string;
+  animate?: string;
+}
+
+const { title, role, description, badge, borderColor, badgeBg, badgeText, animate } = Astro.props;
+---
+
+<div
+  class={`agent-card border-t-4 ${borderColor} w-full bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1 dark:border-slate-800 ${animate || ''}`}
+>
+  <div
+    class={`inline-block ${badgeBg} ${badgeText} px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider mb-3`}
+  >
+    {badge}
+  </div>
+  <h3 class="font-bold text-lg text-slate-800 dark:text-white">
+    {title}
+  </h3>
+  {role && <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">{role}</p>}
+  <slot />
+</div>

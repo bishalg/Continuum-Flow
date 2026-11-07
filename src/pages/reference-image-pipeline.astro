@@ -1,0 +1,116 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import AgentCard from '../components/agentic/AgentCard.astro';
+---
+
+<DocLayout title="Reference Image Pipeline" description="Implementing Visual Anchoring for character consistency in 2026.">
+    <div class="prose prose-lg dark:prose-invert max-w-none text-slate-700 dark:text-slate-300">
+        <h1>Reference Image Pipeline (Visual Anchoring)</h1>
+        
+        <p class="lead text-xl text-slate-600 dark:text-slate-400 mb-8">
+            Moving beyond text-only prompts to high-fidelity visual identity preservation using the "Master Anchor" strategy.
+        </p>
+
+        <section class="not-prose my-12">
+            <div class="bg-indigo-50 dark:bg-indigo-900/10 border-2 border-indigo-500 rounded-3xl p-8 shadow-xl">
+                <h2 class="text-2xl font-bold text-indigo-900 dark:text-white mb-6 flex items-center gap-3">
+                    <span class="bg-indigo-500 text-white p-2 rounded-lg">🚀</span> The 2026 Shift
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-slate-800 dark:text-slate-200">The Problem: Prompt Drift</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Even with detailed text prompts like <em>"Arjun, wearing a blue jacket, short hair"</em>, the AI's internal noise causes the face to change slightly every time. This "Character Amnesia" is the #1 reason for production rejection.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-slate-800 dark:text-slate-200">The Solution: Visual Anchoring</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            We encode the character's face into a <strong>1024-dimension latent vector</strong>. This vector is injected into the UNet attention layers, forcing the model to "hallucinate" the action around a fixed visual identity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2>Pipeline Architecture: The Delegation Model</h2>
+        <p class="mb-8 text-slate-600 dark:text-slate-400">
+            Maintaining visual consistency requires heavy data passing (image latents, differential states). Passing this through the main "Showrunner" agent bloats the context window and causes failures. We solve this by delegating visual consistency to a dedicated <strong>Visual-Coherence Sub-Agent</strong>.
+        </p>
+
+        <div class="not-prose my-12 relative">
+            <!-- Steps -->
+            <div class="space-y-12">
+                <!-- Step 1 -->
+                <div class="flex items-start gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg z-10">1</div>
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm w-full">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Showrunner Delegation</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            The main <strong>Showrunner Agent</strong> processes the narrative text. When it detects a visual generation requirement, it immediately delegates the task, keeping its own context lightweight.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex items-start gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg z-10">2</div>
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm w-full">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Visual-Coherence Sub-Agent</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            This isolated agent takes over. It queries the <strong>Identity Database</strong> for the Master Reference, passes it through an IP-Adapter (vision encoder), and extracts the "Identity Latents".
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex items-start gap-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg z-10">3</div>
+                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm w-full">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Targeted Injection</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            The Sub-Agent constructs a multimodal payload and injects the latents directly into the UNet attention layers of the Video API. The result is returned to the Showrunner without ever exposing the heavy visual data to the main context window.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Connecting Line -->
+            <div class="absolute top-6 left-6 w-0.5 h-[calc(100%-48px)] bg-slate-200 dark:bg-slate-800 -z-0"></div>
+        </div>
+
+        <h2>Logic Implementation (Pseudo-Code)</h2>
+        <div class="not-prose my-8 bg-slate-900 rounded-xl p-6 overflow-x-auto shadow-2xl">
+            <pre class="text-xs font-mono leading-relaxed text-indigo-300">
+<span class="text-slate-500">// Character Consistency Logic (Early 2026)</span>
+<span class="text-purple-400">interface</span> <span class="text-sky-400">ScenePayload</span> &#123;
+  narrativeText: <span class="text-teal-400">string</span>;
+  characterId: <span class="text-teal-400">string</span>;
+  referenceImageId: <span class="text-teal-400">string</span>; <span class="text-slate-500">// The Master Anchor</span>
+&#125;
+
+<span class="text-purple-400">async function</span> <span class="text-sky-400">generateConsistentScene</span>(payload: ScenePayload) &#123;
+  <span class="text-slate-500">// 1. Retrieve the Master Identity Vector</span>
+  <span class="text-purple-400">const</span> identityVector = <span class="text-purple-400">await</span> IdentityDB.<span class="text-sky-400">getVector</span>(payload.referenceImageId);
+
+  <span class="text-slate-500">// 2. Construct the Cross-Attention Injection</span>
+  <span class="text-purple-400">const</span> prompt = <span class="text-sky-400">constructMultimodalPrompt</span>(payload.narrativeText, identityVector);
+
+  <span class="text-slate-500">// 3. Generate via ControlNet Reference & IP-Adapter</span>
+  <span class="text-purple-400">return await</span> VideoEngine.<span class="text-sky-400">render</span>(&#123;
+    prompt,
+    control_layers: [
+      &#123; type: <span class="text-orange-400">"reference_only"</span>, strength: <span class="text-teal-400">0.85</span> &#125;,
+      &#123; type: <span class="text-orange-400">"face_id"</span>, vector: identityVector &#125;
+    ]
+  &#125;);
+&#125;</pre>
+        </div>
+
+        <section class="mt-16 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Why this matters?</h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                By 2026, the standard for "Production Grade" AI video is no longer "it looks cool." It is **Stateful Consistency**. If a character has a scar on their left cheek in scene 1, they must have that exact scar in scene 1,000. Text prompts cannot guarantee this; only **Reference Image Latents** can.
+            </p>
+        </section>
+    </div>
+</DocLayout>

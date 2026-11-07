@@ -1,591 +1,70 @@
 ---
-// Agentic Swarm Showcase Component
-// Visualizes the "Production Studio Swarm" model
+/**
+ * AgenticSwarm.astro
+ * Orchestrator component for the "Production Studio Swarm" model.
+ * Modularized for early 2026 standards.
+ */
+import ParadigmShift from './agentic/ParadigmShift.astro';
+import SwarmMap from './agentic/SwarmMap.astro';
+import PerformanceMetrics from './agentic/PerformanceMetrics.astro';
+import CriticLogic from './agentic/CriticLogic.astro';
 ---
 
-<div
-  class="agentic-swarm-container not-prose font-sans text-slate-800 dark:text-slate-200 pt-8"
->
+<div class="agentic-swarm-container not-prose font-sans text-slate-800 dark:text-slate-200 pt-8">
   <!-- SECTION 1: THE PARADIGM SHIFT -->
-  <section class="mb-12 sm:mb-24">
-    <div class="text-center mb-8 sm:mb-12">
-      <h2
-        class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-3 sm:mb-4"
-      >
-        Why Agentic?
-      </h2>
-      <p
-        class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed"
-      >
-        Standard pipelines are fragile. If one step fails, the output fails. An
-        agentic swarm is resilient, utilizing specialized roles to critique and
-        improve work before final rendering.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 sm:gap-8 lg:grid-cols-2">
-      <!-- Old Way -->
-      <div
-        class="bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 opacity-80 hover:opacity-100 transition-all shadow-sm hover:shadow-md group"
-      >
-        <h3
-          class="font-bold text-slate-500 dark:text-slate-400 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-lg sm:text-xl group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors"
-        >
-          <span
-            class="text-2xl sm:text-3xl grayscale group-hover:grayscale-0 transition-all"
-            >⛓️</span
-          > The Old Linear Pipe
-        </h3>
-        <div class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
-          <div class="flex items-center gap-3">
-            <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>Sequential
-            (Slow)
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>No Feedback
-            Loop
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2.5 h-2.5 rounded-full bg-slate-400"></div>Errors flow
-            to output
-          </div>
-        </div>
-      </div>
-
-      <!-- New Way -->
-      <div
-        class="bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border-2 border-sky-500/50 hover:border-sky-500 shadow-xl shadow-sky-500/10 relative overflow-hidden group transition-all"
-      >
-        <div
-          class="absolute top-0 right-0 bg-sky-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl shadow-md"
-        >
-          NEW STANDARD
-        </div>
-        <h3
-          class="font-bold text-sky-600 dark:text-sky-400 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3 text-lg sm:text-xl"
-        >
-          <span class="text-2xl sm:text-3xl animate-bounce-slow">🐝</span> The Agentic
-          Swarm
-        </h3>
-        <div class="space-y-4 text-sm text-slate-700 dark:text-slate-300">
-          <div class="flex items-center gap-3">
-            <div
-              class="w-2.5 h-2.5 rounded-full bg-teal-500 shadow-sm shadow-teal-500/50"
-            >
-            </div><strong>Parallel</strong> Asset Generation
-          </div>
-          <div class="flex items-center gap-3">
-            <div
-              class="w-2.5 h-2.5 rounded-full bg-pink-500 shadow-sm shadow-pink-500/50"
-            >
-            </div><strong>Active Critique</strong> & Self-Correction
-          </div>
-          <div class="flex items-center gap-3">
-            <div
-              class="w-2.5 h-2.5 rounded-full bg-sky-500 shadow-sm shadow-sky-500/50"
-            >
-            </div><strong>Orchestrator</strong> State Management
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ParadigmShift />
 
   <!-- SECTION 2: THE SWARM MAP (Visual Architecture) -->
-  <section
-    class="bg-slate-50 dark:bg-black/30 rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-16 border border-slate-200 dark:border-white/5 mb-12 sm:mb-24 relative overflow-hidden"
-  >
-    <div
-      class="absolute inset-0 bg-grid-slate-200/50 dark:bg-grid-slate-800/50 [mask-image:linear-gradient(0deg,transparent,white)] pointer-events-none"
-    >
-    </div>
-
-    <div class="text-center mb-12 relative z-10">
-      <h2
-        class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-2"
-      >
-        Swarm Architecture Map
-      </h2>
-      <p class="text-slate-500 dark:text-slate-400">
-        Visualizing the Non-Linear Data Flow
-      </p>
-    </div>
-
-    <div class="max-w-4xl mx-auto relative z-10">
-      <!-- 1. TOP: ORCHESTRATOR -->
-      <div class="mb-16">
-        <div class="flex justify-center mb-8 relative">
-          <div
-            class="agent-card border-t-4 border-t-sky-500 w-full sm:w-72 text-center bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-2xl shadow-xl transition-transform hover:-translate-y-1 dark:border-slate-800 animate-pulse-border-sky"
-          >
-            <div
-              class="inline-block bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider mb-3"
-            >
-              The Brain
-            </div>
-            <h3 class="font-bold text-lg text-slate-800 dark:text-white">
-              The Showrunner
-            </h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
-              Assigns Jobs, Manages State
-            </p>
-          </div>
-        </div>
-        <div class="max-w-2xl mx-auto text-center">
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            The <strong>Showrunner</strong> acts as the central nervous system. Unlike
-            traditional linear scripts, it doesn't just pass data; it manages a persistent
-            <strong>Global State</strong>. It scans the narrative source,
-            identifies high-level requirements, and issues "Job Tickets" to
-            specialized agents. If a new character is introduced mid-story, the
-            Showrunner pauses active scene generation to ensure the Art Dept
-            creates a consistent character profile first.
-          </p>
-        </div>
-      </div>
-
-      <!-- CONNECTOR: Split (hidden on mobile) -->
-      <div
-        class="absolute top-[8rem] left-1/2 -translate-x-1/2 w-[60%] h-10 border-t-2 border-l-2 border-r-2 border-slate-300 dark:border-slate-600 rounded-t-2xl -z-0 hidden md:block"
-      >
-      </div>
-
-      <!-- 2. MIDDLE: PARALLEL WINGS -->
-      <div
-        class="grid grid-cols-1 gap-6 sm:gap-12 md:grid-cols-2 mb-8 sm:mb-16 relative"
-      >
-        <!-- Left: Art -->
-        <div class="space-y-6">
-          <div class="flex justify-center">
-            <div
-              class="agent-card border-t-4 border-t-amber-500 w-full max-w-xs mx-auto bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1 dark:border-slate-800"
-            >
-              <div
-                class="inline-block bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider mb-3"
-              >
-                Visuals
-              </div>
-              <h3 class="font-bold text-lg text-slate-800 dark:text-white">
-                Art Department
-              </h3>
-              <ul
-                class="text-xs text-slate-500 dark:text-slate-400 mt-3 space-y-1.5 text-left pl-4"
-              >
-                <li>• Casting (Face Gen)</li>
-                <li>• Location Scouting</li>
-              </ul>
-            </div>
-          </div>
-          <p
-            class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed px-4"
-          >
-            Operating in parallel with narrative analysis, the <strong
-              >Art Department</strong
-            > focuses on visual consistency. The <em>Casting Agent</em> generates
-            master reference images for every identified character, while the <em
-              >Location Scout</em
-            > extracts environment descriptors to build stable LoRAs or embeddings.
-            This ensures that when a scene is rendered, the visuals are pulled from
-            a pre-validated "Story Bible."
-          </p>
-        </div>
-
-        <!-- Right: Writer -->
-        <div class="space-y-6">
-          <div class="flex justify-center">
-            <div
-              class="agent-card border-t-4 border-t-teal-500 w-full max-w-xs mx-auto bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1 dark:border-slate-800"
-            >
-              <div
-                class="inline-block bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider mb-3"
-              >
-                Narrative
-              </div>
-              <h3 class="font-bold text-lg text-slate-800 dark:text-white">
-                Writers' Room
-              </h3>
-              <ul
-                class="text-xs text-slate-500 dark:text-slate-400 mt-3 space-y-1.5 text-left pl-4"
-              >
-                <li>• Hierarchical Summary</li>
-                <li>• Context "Continuum Flow"</li>
-              </ul>
-            </div>
-          </div>
-          <p
-            class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed px-4"
-          >
-            The <strong>Writers' Room</strong> handles the "Continuum Flow" context logic.
-            Instead of simple memory, it uses a hierarchical approach: different agents
-            summarize chapters in parallel, and a reconciliation layer ensures that
-            facts (like a character's inventory or an injury) are tracked accurately
-            across scene boundaries, preventing narrative contradictions.
-          </p>
-        </div>
-      </div>
-
-      <!-- CONNECTOR: Merge -->
-      <div
-        class="absolute top-[28rem] left-1/2 -translate-x-1/2 w-[60%] h-10 border-b-2 border-l-2 border-r-2 border-slate-300 dark:border-slate-600 rounded-b-2xl -z-0 hidden md:block"
-      >
-      </div>
-
-      <!-- 3. CENTER: DIRECTOR -->
-      <div class="mb-16 relative z-10 pt-8">
-        <div class="flex justify-center mb-8">
-          <div
-            class="agent-card bg-slate-800 dark:bg-black text-white w-full sm:w-72 text-center shadow-2xl p-4 sm:p-6 rounded-2xl border border-slate-700 dark:border-white/10 relative overflow-hidden animate-pulse-border-white"
-          >
-            <div
-              class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"
-            >
-            </div>
-            <div
-              class="inline-block bg-slate-700 text-white px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider mb-3"
-            >
-              Synthesis
-            </div>
-            <h3 class="font-bold text-lg relative z-10">Director Agent</h3>
-            <p class="text-xs text-slate-400 mt-2 relative z-10">
-              Combines Art + Text → Prompt
-            </p>
-          </div>
-        </div>
-        <div class="max-w-2xl mx-auto text-center">
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            The <strong>Director Agent</strong> is the synthesizer. It takes the validated
-            visual assets from the Art Dept and the refined narrative context from
-            the Writers' Room to construct the final prompt directives. It handles
-            the translation from "Story Language" to "Model Language," injecting technical
-            camera angles and lighting moods derived from the global state.
-          </p>
-        </div>
-      </div>
-
-      <!-- 4. BOTTOM: CRITIC LOOP -->
-      <div class="relative z-10">
-        <div class="flex justify-center mb-8">
-          <div class="relative">
-            <!-- The Loop Line -->
-            <div
-              class="absolute top-1/2 -left-16 w-16 h-24 border-l-2 border-b-2 border-dashed border-pink-400 rounded-bl-2xl pointer-events-none -translate-y-[100%] opacity-60"
-            >
-            </div>
-            <div
-              class="absolute -top-16 -left-20 text-pink-600 dark:text-pink-400 text-[10px] font-bold bg-pink-50 dark:bg-pink-900/20 px-2 py-1 rounded shadow-sm border border-pink-200 dark:border-pink-900/30"
-            >
-              RETRY
-            </div>
-
-            <div
-              class="agent-card border-t-4 border-t-pink-500 w-72 text-center bg-pink-50/50 dark:bg-pink-900/10 p-6 rounded-2xl shadow-lg border border-pink-100 dark:border-pink-900/30"
-            >
-              <div
-                class="inline-block bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider mb-3"
-              >
-                The Gatekeeper
-              </div>
-              <h3 class="font-bold text-lg text-pink-900 dark:text-pink-100">
-                QA Critic
-              </h3>
-              <div class="flex justify-center gap-4 mt-4">
-                <span
-                  class="text-xs font-bold text-red-500 dark:text-red-400 bg-red-100 dark:bg-red-900/20 px-2 py-1 rounded"
-                  >❌ Reject</span
-                >
-                <span
-                  class="text-xs font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20 px-2 py-1 rounded"
-                  >✅ Approve</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="max-w-2xl mx-auto text-center">
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            The <strong>QA Critic</strong> serves as the final barrier. It operates
-            on a "Zero Compromise" principle, validating the Director's output against
-            the Story Bible. If the prompt implies a scene at night but the state
-            specifies a sunlit environment, the Critic <strong>REJECTS</strong> the
-            work, forcing a retry with corrected parameters to avoid expensive, inaccurate
-            renders.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <SwarmMap />
 
   <!-- SECTION 3: PERFORMANCE METRICS -->
-  <section class="mb-12 sm:mb-24">
-    <div class="grid grid-cols-1 gap-6 sm:gap-12 lg:grid-cols-2">
-      <!-- Chart 1: Parallel Efficiency -->
-      <div
-        class="bg-white dark:bg-slate-900 p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-lg border border-slate-100 dark:border-white/5 flex flex-col"
-      >
-        <h3 class="font-bold text-slate-800 dark:text-white mb-4 text-xl">
-          Time Efficiency
-        </h3>
-        <div
-          class="chart-container relative h-[180px] sm:h-[220px] md:h-[250px] w-full mb-4 sm:mb-6"
-        >
-          <canvas id="efficiencyChart"></canvas>
-        </div>
-        <div class="mt-auto">
-          <h4
-            class="text-sm font-bold text-teal-600 dark:text-teal-400 mb-2 uppercase tracking-wider"
-          >
-            How it works
-          </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            In a linear pipeline, text processing blocks asset generation. The
-            Agentic Swarm decouples these tasks. The <strong
-              >Art Department</strong
-            > begins generating character LoRAs and location baselines the moment
-            the <strong>Showrunner</strong> identifies them, running <em
-              >concurrently</em
-            > with the Writers' Room narrative analysis. This parallelization reduces
-            total end-to-end latency by approximately <strong>60%</strong> compared
-            to sequential processing.
-          </p>
-        </div>
-      </div>
-
-      <!-- Chart 2: Cost Saving via Critique -->
-      <div
-        class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-white/5 flex flex-col"
-      >
-        <h3 class="font-bold text-slate-800 dark:text-white mb-4 text-xl">
-          Cost Optimization
-        </h3>
-        <div class="chart-container relative h-[250px] w-full mb-6">
-          <canvas id="costChart"></canvas>
-        </div>
-        <div class="mt-auto">
-          <h4
-            class="text-sm font-bold text-pink-600 dark:text-pink-400 mb-2 uppercase tracking-wider"
-          >
-            How it works
-          </h4>
-          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Video generation models are expensive (up to $0.10 per second).
-            Standard pipelines often render "hallucinated" content (e.g., wrong
-            clothing) that must be discarded. The <strong>QA Critic</strong> intercepts
-            the Director's prompt
-            <em>before</em> it hits the Video API. By rejecting invalid prompts cheaply
-            at the text level, we reduce wasted render costs from ~40% to less than
-            <strong>5%</strong>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PerformanceMetrics />
 
   <!-- SECTION 4: THE FEEDBACK LOOP DETAIL -->
-  <section
-    class="mt-24 bg-white dark:bg-slate-900 rounded-3xl shadow-xl border-l-8 border-pink-500 p-8 md:p-12 dark:border-l-pink-600"
-  >
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-      <div class="md:col-span-1">
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">
-          The "Critic" Logic
-        </h2>
-        <p
-          class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6"
-        >
-          This is the single most important addition. By giving an agent the
-          power to say <strong class="text-pink-600 dark:text-pink-400"
-            >"NO"</strong
-          >, we effectively create an automated quality assurance department.
-        </p>
-        <div
-          class="bg-pink-50 dark:bg-pink-900/10 p-4 rounded-xl text-xs text-pink-800 dark:text-pink-300 font-mono border border-pink-100 dark:border-pink-900/30"
-        >
-          if (prompt.conflictsWith(state)) &#123;<br />
-          &nbsp;&nbsp;return REJECT;<br />
-          &#125; else &#123;<br />
-          &nbsp;&nbsp;return APPROVE;<br />
-          &#125;
-        </div>
-      </div>
+  <CriticLogic />
 
-      <div class="md:col-span-2">
-        <!-- HTML Process Flow -->
-        <div
-          class="flex flex-col md:flex-row items-center justify-between gap-4"
-        >
-          <div
-            class="bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-6 rounded-2xl text-center w-full"
-          >
-            <div
-              class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2"
-            >
-              INPUT
-            </div>
-            <div class="font-bold text-slate-700 dark:text-slate-200">
-              Draft Prompt
-            </div>
-          </div>
-          <div
-            class="text-slate-300 dark:text-slate-600 text-2xl rotate-90 md:rotate-0"
-          >
-            →
-          </div>
-          <div
-            class="bg-pink-50 dark:bg-pink-900/10 border-2 border-pink-200 dark:border-pink-900/30 p-6 rounded-2xl text-center w-full relative shadow-lg shadow-pink-500/5"
-          >
-            <div
-              class="text-[10px] font-black text-pink-400 uppercase tracking-widest mb-2"
-            >
-              CRITIC
-            </div>
-            <div class="font-bold text-pink-800 dark:text-pink-300">
-              Validation
-            </div>
-          </div>
-          <div
-            class="text-slate-300 dark:text-slate-600 text-2xl rotate-90 md:rotate-0"
-          >
-            →
-          </div>
-          <div
-            class="bg-sky-50 dark:bg-sky-900/10 border-2 border-sky-200 dark:border-sky-900/30 p-6 rounded-2xl text-center w-full shadow-lg shadow-sky-500/5"
-          >
-            <div
-              class="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-2"
-            >
-              OUTPUT
-            </div>
-            <div class="font-bold text-sky-800 dark:text-sky-300">
-              Render Video
-            </div>
-          </div>
+  <!-- 2026 UPGRADE: Reference Image Injection (New Section) -->
+  <section class="mt-24 mb-12">
+    <div class="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-3xl p-8 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4">
+            <span class="bg-indigo-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg">2026 STANDARD</span>
         </div>
-      </div>
+        
+        <div class="max-w-3xl">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Reference Image Injection</h2>
+            <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                In 2026, text-only prompts are considered "Lossy." Continuum Flow now mandates **Visual Anchoring** via Reference Image Injection. Every narrative chunk is generated with a locked "Identity Vector" derived from a master reference image.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/30">
+                    <h4 class="font-bold text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">
+                        <span>🖼️</span> Master Anchor
+                    </h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                        A single, high-fidelity image of the character that acts as the "Source of Truth" for all subsequent generations.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-purple-100 dark:border-purple-900/30">
+                    <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-3 flex items-center gap-2">
+                        <span>🧬</span> Identity Encoding
+                    </h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                        IP-Adapter Plus and ControlNet Reference layers ensure that the character's facial features remain 100% consistent, even in dynamic action shots.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
   </section>
 </div>
 
-<script>
-  import Chart from "chart.js/auto";
-
-  // Chart Defaults
-  Chart.defaults.font.family = "'Inter', sans-serif";
-  Chart.defaults.color = "#64748B";
-
-  // Initialize charts on load
-  document.addEventListener("DOMContentLoaded", () => {
-    // --- CHART 1: EFFICIENCY ---
-    const ctx1 = document.getElementById(
-      "efficiencyChart",
-    ) as HTMLCanvasElement;
-    if (ctx1) {
-      new Chart(ctx1, {
-        type: "bar",
-        data: {
-          labels: ["Linear Pipeline", "Agentic Swarm"],
-          datasets: [
-            {
-              label: "Text Processing",
-              data: [50, 20],
-              backgroundColor: "#0F766E", // Teal
-            },
-            {
-              label: "Asset Generation",
-              data: [40, 20],
-              backgroundColor: "#D97706", // Amber
-            },
-            {
-              label: "Video Rendering",
-              data: [60, 60],
-              backgroundColor: "#0EA5E9", // Sky
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          indexAxis: "y",
-          scales: {
-            x: {
-              stacked: true,
-              title: {
-                display: true,
-                text: "Total Production Time (Minutes)",
-              },
-              grid: { color: "rgba(148, 163, 184, 0.1)" },
-            },
-            y: {
-              stacked: true,
-              grid: { display: false },
-            },
-          },
-          plugins: {
-            legend: { position: "bottom" },
-          },
-        },
-      });
-    }
-
-    // --- CHART 2: COST / QUALITY ---
-    const ctx2 = document.getElementById("costChart") as HTMLCanvasElement;
-    if (ctx2) {
-      new Chart(ctx2, {
-        type: "bar",
-        data: {
-          labels: ["Linear Pipeline", "Agentic Swarm"],
-          datasets: [
-            {
-              label: "Wasted Renders",
-              data: [35, 5],
-              backgroundColor: "#EF4444", // Red
-            },
-            {
-              label: "Successful Renders",
-              data: [65, 95],
-              backgroundColor: "#22C55E", // Green
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "% of Total Generation Cost",
-              },
-              grid: { color: "rgba(148, 163, 184, 0.1)" },
-            },
-            x: {
-              grid: { display: false },
-            },
-          },
-          plugins: {
-            legend: { position: "bottom" },
-          },
-        },
-      });
-    }
-  });
-</script>
-
-<style>
+<style is:global>
   @keyframes bounce-slow {
-    0%,
-    100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    25% {
-      transform: translateY(-3px) rotate(-5deg);
-    }
-    50% {
-      transform: translateY(0) rotate(0deg);
-    }
-    75% {
-      transform: translateY(3px) rotate(5deg);
-    }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(-5deg); }
+    50% { transform: translateY(0) rotate(0deg); }
+    75% { transform: translateY(3px) rotate(5deg); }
   }
   .animate-bounce-slow {
     animation: bounce-slow 4s infinite ease-in-out;
@@ -593,26 +72,16 @@
   }
 
   @keyframes pulse-border-sky {
-    0%,
-    100% {
-      box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
-    }
-    50% {
-      box-shadow: 0 0 15px 0 rgba(14, 165, 233, 0.4);
-    }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+    50% { box-shadow: 0 0 15px 0 rgba(14, 165, 233, 0.4); }
   }
   .animate-pulse-border-sky {
     animation: pulse-border-sky 3s infinite;
   }
 
   @keyframes pulse-border-white {
-    0%,
-    100% {
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
-    50% {
-      box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.2);
-    }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    50% { box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.2); }
   }
   .animate-pulse-border-white {
     animation: pulse-border-white 3s infinite;
